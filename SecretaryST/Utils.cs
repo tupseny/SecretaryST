@@ -125,10 +125,14 @@ namespace SecretaryST
 #pragma warning disable CA1305 // Укажите IFormatProvider
                 res = Convert.ToInt32(obj);
 #pragma warning restore CA1305 // Укажите IFormatProvider
-            } 
+            }
             else if (obj is int)
             {
                 res = (int)obj;
+            }
+            else if (obj is null)
+            {
+                res = 0;
             }
             else
             {

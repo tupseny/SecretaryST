@@ -33,7 +33,9 @@ namespace SecretaryST.Exceptions
 
         private static string ModifyMessage(string requiredType, object o)
         {
-            string msg = "Type should be '" + requiredType + "' but got '" + o.GetType().ToString() + "'";
+            string t = o is null ? "empty" : o.GetType().ToString();
+
+            string msg = "Type should be '" + requiredType + "' but got '" + t + "'";
             return msg;
         }
 
