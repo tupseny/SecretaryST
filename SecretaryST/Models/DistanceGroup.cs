@@ -1,57 +1,69 @@
 ﻿using SecretaryST.Enums;
-using System;
 using System.Collections.Generic;
 
 namespace SecretaryST.Models
 {
     class DistanceGroup
     {
-        private DistanceGroupAmount _Amount;
-        private DistanceGroupType _Type;
         private int _ChipNumber;
+        private DistanceGroupType _Type;
+
+        private readonly DistanceGroupAmount _Amount;
         private readonly List<Person> _Members;
+        private readonly int _MaxMembers;
 
         public DistanceGroup(DistanceGroupAmount amount, int chipNumber = 0)
         {
             _Amount = amount;
             _ChipNumber = chipNumber;
             _Members = new List<Person>();
+            _MaxMembers = EnumCasters.FromDistanceGroupAmount(Amount);
         }
 
         public int ChipNumber { get => _ChipNumber; set => _ChipNumber = value; }
-        internal DistanceGroupAmount Amount { get => _Amount; set => _Amount = value; }
+        internal DistanceGroupAmount Amount { get => _Amount; }
         internal DistanceGroupType Type
         {
-            get => _Type; set => _Type = value;
+            get => _Type;
         }
         internal List<Person> Members => _Members;
 
-        internal void addMember(Person p)
+        public int MaxMembers => _MaxMembers;
+
+        internal void AddMember(Person p)
         {
-            int max = EnumCasters.fromDistanceGroupAmount(this.Amount);
-            if (this.Members.Count >= max)
+            if (IsFull())
             {
                 throw new Exceptions.GroupFullException();
             }
             else
             {
                 this.Members.Add(p);
-                if (this.Members.Count == max)
-                {
-                    Sex tempSex = Sex.Undefined;
-                    this.Members.ForEach(m =>
-                    {
-                        if (tempSex == Sex.Undefined) { tempSex = p.Sex; }
-                        if (p.Sex != tempSex) { Type = DistanceGroupType.Both; }
+                if (IsFull()) { SetGroupSex(); }
+            }
+        }
 
-                    });
-                    if (Type != DistanceGroupType.Both) Type = EnumCasters.sexToGroupType(tempSex);
-                }
+        private void SetGroupSex()
+        {
+            Sex tempSex = Sex.Undefined;
+            this.Members.ForEach(m =>
+            {
+                if (tempSex == Sex.Undefined) { tempSex = m.Sex; }
+                if (m.Sex != tempSex) { this._Type = DistanceGroupType.Both; }
+            });
+            if (Type != DistanceGroupType.Both) this._Type = EnumCasters.SexToGroupType(tempSex);
+        }
+
+        public bool IsFull()
+        {
+            if (this.Members.Count >= this.MaxMembers)
+            {
+                return true;
             }
 
-
-
-
+            return false;
         }
+
+
     }
 }

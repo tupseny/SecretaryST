@@ -17,11 +17,15 @@ namespace SecretaryST
             }
             else
             {
+#pragma warning disable CA1303 // Не передавать литералы в качестве локализованных параметров
                 throw new InvalidOperationException("There is no cells in range");
+#pragma warning restore CA1303 // Не передавать литералы в качестве локализованных параметров
             }
         }
 
+#pragma warning disable CA1814 // Используйте массивы массивов вместо многомерных массивов
         private static List<List<object>> RemoveNullOrEmptyRows(object[,] arr)
+#pragma warning restore CA1814 // Используйте массивы массивов вместо многомерных массивов
         {
             if (arr is null)
             {
@@ -55,8 +59,9 @@ namespace SecretaryST
             return lResult;
         }
 
-        public static string ReadStringValue(object obj)
+        public static string ReadStringValue(List<object> list, int i)
         {
+            object obj = list[i];
             string res;
 
             if (obj is string)
@@ -71,8 +76,9 @@ namespace SecretaryST
             return res;
         }
 
-        public static DateTime ReadDateTimeValue(object obj)
+        public static DateTime ReadDateTimeValue(List<object> list, int i)
         {
+            object obj = list[i];
             DateTime res;
 
             if (obj is DateTime)
@@ -83,7 +89,7 @@ namespace SecretaryST
             {
                 try
                 {
-                    string s = ReadStringValue(obj);
+                    string s = ReadStringValue(list, i);
 
                     if (int.TryParse(s, out int year))
                     {
@@ -91,48 +97,48 @@ namespace SecretaryST
                     }
                     else
                     {
-                        throw new InvalidFieldTypeException("YEAR", obj);
+                        throw new InvalidFieldTypeException("YEAR", obj, iCol: i);
                     }
                 } catch (ArgumentException)
                 {
-                    throw new InvalidFieldTypeException("DATE", obj);
+                    throw new InvalidFieldTypeException("DATE", obj, iCol: i);
                 }
             }
 
             return res;
         }
 
-        public static int ReadIntValue(object obj)
+        public static int ReadIntValue(List<object> list, int i)
         {
+            object obj = list[i];
             int res;
 
             if (obj is string)
             {
                 if (!int.TryParse((string)obj, out res))
                 {
-                    throw new InvalidFieldTypeException("NUMBER", obj);
+                    throw new InvalidFieldTypeException("NUMBER", obj, iCol: i);
                 }
             }
             else if (obj is double)
             {
+#pragma warning disable CA1305 // Укажите IFormatProvider
                 res = Convert.ToInt32(obj);
-            }
+#pragma warning restore CA1305 // Укажите IFormatProvider
+            } 
             else if (obj is int)
             {
                 res = (int)obj;
             }
             else
             {
-                throw new InvalidFieldTypeException("NUMBER", obj);
+                throw new InvalidFieldTypeException("NUMBER", obj, iCol: i);
             }
 
             return res;
         }
 
-        public static void AlertMsg(string title, string msg)
-        {
-            MessageBox.Show(msg, title);
-        }
+        
     }
 }
 ;

@@ -8,6 +8,14 @@ namespace SecretaryST.Exceptions
 {
     class InvalidFieldTypeException : Exception
     {
+        private string requiredType;
+        private int iRow;
+        private int iCol;
+
+        public string RequiredType { get => requiredType; set => requiredType = value; }
+        public int IRow { get => iRow; set => iRow = value; }
+        public int ICol { get => iCol; set => iCol = value; }
+
         public InvalidFieldTypeException(string message) : base(message)
         {
         }
@@ -16,8 +24,11 @@ namespace SecretaryST.Exceptions
         {
         }
 
-        public InvalidFieldTypeException(string requiredType, object obj) : base(ModifyMessage(requiredType, obj))
+        public InvalidFieldTypeException(string requiredType, object obj, int iRow = 0, int iCol = 0) : base(ModifyMessage(requiredType, obj))
         {
+            this.iRow = iRow;
+            this.iCol = iCol;
+            this.requiredType = requiredType;
         }
 
         private static string ModifyMessage(string requiredType, object o)

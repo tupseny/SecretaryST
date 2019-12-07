@@ -4,7 +4,26 @@ namespace SecretaryST.Enums
 {
     class EnumCasters
     {
-        public static DistanceGroupType sexToGroupType(Sex s)
+
+        public static DistanceLevels NumberToDistanceLevelType(int lvl)
+        {
+            switch (lvl)
+            {
+                case 1:
+                    return DistanceLevels.I;
+                case 2:
+                    return DistanceLevels.II;
+                case 3:
+                    return DistanceLevels.III;
+                case 4:
+                    return DistanceLevels.IV;
+                case 5:
+                    return DistanceLevels.V;
+                default:
+                    throw new ArgumentException("invalid distance level", nameof(lvl));
+            }
+        }
+        public static DistanceGroupType SexToGroupType(Sex s)
         {
             switch (s)
             {
@@ -17,7 +36,7 @@ namespace SecretaryST.Enums
             }
         }
 
-        public static int fromDistanceGroupAmount(DistanceGroupAmount am)
+        public static int FromDistanceGroupAmount(DistanceGroupAmount am)
         {
             switch (am)
             {
@@ -34,7 +53,7 @@ namespace SecretaryST.Enums
             }
         }
 
-        public static Rangs castToRangs(string s)
+        public static Rangs CastToRangs(string s)
         {
             switch (s.ToLower())
             {
@@ -57,7 +76,7 @@ namespace SecretaryST.Enums
             }
         }
 
-        public static Sex castToSex(string s)
+        public static Sex CastToSex(string s)
         {
             switch (s.ToLower())
             {
@@ -75,6 +94,23 @@ namespace SecretaryST.Enums
                     return Sex.Female;
                 default:
                     throw new ArgumentException("Not valid argument", nameof(s));
+            }
+        }
+
+        public static string GroupAmountStringRepresent(DistanceGroupAmount amnt)
+        {
+            switch (amnt)
+            {
+                case DistanceGroupAmount.Four:
+                    return "Группа (4)";
+                case DistanceGroupAmount.One:
+                    return "Личка";
+                case DistanceGroupAmount.Six:
+                    return "Группа (6)";
+                case DistanceGroupAmount.Two:
+                    return "Связка";
+                default:
+                    throw new ArgumentException("Not valid argument", nameof(amnt));
             }
         }
     }
