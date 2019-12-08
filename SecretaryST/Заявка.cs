@@ -78,7 +78,7 @@ namespace SecretaryST
 
         #endregion
 
-
+        //todo: Write data to DataBase
         internal static void ImportToBase()
         {
             // If the proccess already started then just exit
