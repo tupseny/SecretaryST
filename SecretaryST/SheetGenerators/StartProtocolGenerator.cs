@@ -67,19 +67,21 @@ namespace SecretaryST.SheetGenerators
 
             void GenHead(int width)
             {
-                MergeAndInsert(shRange[sOwnerOrganisation].Resize[ColumnSize: width], );
+                //owner organisation
+                RangeFormatter fRange = new RangeFormatter(shRange[sOwnerOrganisation].Resize[ColumnSize: width]);
+                fRange.Merge();
+                fRange.HorizontalCenterAlignment();
+                fRange.VerticalCenterAlignment();
+                fRange.TextH3();
+                fRange.Range.Value = Globals.Options.OwnerOrganisation;
+                
+                //
             }
         }
 
         private void InsertData()
         {
 
-        }
-
-        void MergeAndInsert(ExcelI.Range rng, string val)
-        {
-            rng.Merge();
-            rng.Value = val;
         }
     }
 }
