@@ -1,6 +1,8 @@
 ﻿using Microsoft.Office.Tools.Excel;
 using ExcelInter = Microsoft.Office.Interop.Excel;
 using System;
+using SecretaryST.Enums;
+using System.Collections.Generic;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -11,6 +13,7 @@ namespace SecretaryST.SheetGenerators
 
         private string sheetName;
         private Worksheet oSheet;
+        
 
         protected GeneratorAbstract()
         {
@@ -18,11 +21,13 @@ namespace SecretaryST.SheetGenerators
             this.app = oWorkbook.Application;
         }
 
+        //Getter & Setters
         protected Worksheet OSheet { get => oSheet; set => oSheet = value; }
         protected ExcelInter._Application App { get => app; }
         protected Microsoft.Office.Tools.Excel.Workbook OWorkbook { get => oWorkbook; }
         protected string SheetName { get => sheetName; set => sheetName = value; }
 
+        //Protected Methods
         protected void PerformanceMode(bool activate)
         {
             this.App.ScreenUpdating = !activate;
@@ -31,7 +36,7 @@ namespace SecretaryST.SheetGenerators
             this.App.StatusBar = !activate;
         }
 
-        protected void CreateSheet()
+        protected void AddSheet()
         {
             Worksheet sh = OWorkbook.Worksheets.Add(After: oWorkbook.Worksheets[oWorkbook.Worksheets.Count]);
 
@@ -45,6 +50,7 @@ namespace SecretaryST.SheetGenerators
             oSheet = sh;
         }
 
-        abstract public void Create();
+        //Abstract Methods
+        abstract public void Create(List<Dictionary<string, object>> data);
     }
 }

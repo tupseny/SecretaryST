@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ex = Microsoft.Office.Tools.Excel;
 
 namespace SecretaryST
@@ -57,12 +58,20 @@ namespace SecretaryST
         //____________|_______________________|____________
         public static class Options
         {
-            public const bool ShowStartTime = true;
             public const bool IsRandomStartOrder = true;
+            public const bool ComputePersonNr = true;
+
+            public const string OwnerOrganisation = "Какая-то проводящая организация";
+            public const string CompeeteName = "Название соревнований";
 
             public static readonly DateTime Now = new DateTime();
             public static readonly DateTime FirstStartTime = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
             public static readonly DateTime StartInterval = new DateTime(Now.Year, Now.Month, Now.Day, hour: 0, minute: 2, second: 0);
+
+            public static readonly List<String> startProtocolHeaders = new List<string>()
+            {
+                "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "chip-nr", "distance-rang", "start-time"
+            };
 
         }
 
@@ -82,7 +91,25 @@ namespace SecretaryST
             public const string Dist3Name = "дистанция - пешеходная - группа";
             public const string Dist3NameShort = "ГРУППА";
 
-            
+            public const string StartProtocol = "стартовый протокол";
+            public const string DatePrompt = "дата проведения";
+            public const string PlacePrompt = "место проведения";
+
+            public static readonly Dictionary<string, string> StartProtocolHeaders = new Dictionary<string, string>()
+            {
+                { "nr", "№ п/п" },
+                { "name", "Участник" },
+                { "person-nr", "Номер участника" },
+                { "rang", "Разряд" },
+                { "birth", "Год" },
+                { "sex", "Пол" },
+                { "compeete_name", "Зачет" },
+                { "delegation", "Делегация" },
+                { "region", "Территория" },
+                { "chip-nr", "Номер чипа" },
+                { "distance-rang", "Ранг" },
+                { "start-time", "Время старта" },
+            };
         }
     }
 }
