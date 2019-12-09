@@ -54,7 +54,7 @@ namespace SecretaryST
 
             LoadDB();
 
-            LastRow = oSheet.Range[sDataStartCell].Row;
+            lastRow = oSheet.Range[sDataStartCell].Row;
         }
 
         private void Лист3_Shutdown(object sender, System.EventArgs e)

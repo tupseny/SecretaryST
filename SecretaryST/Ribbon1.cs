@@ -7,6 +7,7 @@ namespace SecretaryST
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             this.importBut.Click += (s, ev) => Заявка.ImportToBase();
+            this.startProt1.Click += (s, ev) => ThisWorkbook.StartProtocol1();
         }
     }
 

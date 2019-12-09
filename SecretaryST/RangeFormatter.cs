@@ -85,12 +85,17 @@ namespace SecretaryST
 
         public void Border(bool doubleLine = false, bool bot = false, bool left = false, bool top = false, bool right = false)
         {
-            Range.Borders.LineStyle = doubleLine ? XlLineStyle.xlDouble : XlLineStyle.xlContinuous;
-            Range.Borders.Weight = XlBorderWeight.xlThin;
-            if (bot) { Range.Borders[XlBordersIndex.xlEdgeBottom].Color = XlColorIndex.xlColorIndexAutomatic; }
-            if (left) { Range.Borders[XlBordersIndex.xlEdgeLeft].Color = XlColorIndex.xlColorIndexAutomatic; }
-            if (top) { Range.Borders[XlBordersIndex.xlEdgeTop].Color = XlColorIndex.xlColorIndexAutomatic; }
-            if (right) { Range.Borders[XlBordersIndex.xlEdgeRight].Color = XlColorIndex.xlColorIndexAutomatic; }
+            if (bot) { Border(XlBordersIndex.xlEdgeBottom); }
+            if (left) { Border(XlBordersIndex.xlEdgeLeft); }
+            if (top) { Border(XlBordersIndex.xlEdgeTop); }
+            if (right) { Border(XlBordersIndex.xlEdgeRight); }
+
+            void Border(XlBordersIndex index)
+            {
+                Range.Borders[index].Weight = XlBorderWeight.xlThin;
+                Range.Borders[index].LineStyle = doubleLine ? XlLineStyle.xlDouble : XlLineStyle.xlContinuous;
+                Range.Borders[index].Color = 15;
+            }
         }
 
         public void FillColor()

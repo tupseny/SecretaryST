@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Tools.Excel;
-using SecretaryST.Enums;
+﻿using SecretaryST.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -54,7 +53,7 @@ namespace SecretaryST.SheetGenerators
         private void BuildStructure()
         {
             List<string> headers = Globals.Options.startProtocolHeaders;
-            Worksheet_RangeType shRange = base.OSheet.Range;
+            //Microsoft.Office.Interop.Excel.Range shRange = base.OSheet.Range;
 
             GenHead(headers.Count);
             int n = GenBody(headers);
@@ -86,7 +85,7 @@ namespace SecretaryST.SheetGenerators
 
                 RangeFormatter HeadTitle(string startCell, int headerLvl, string val, bool bold = false, bool underline = false)
                 {
-                    RangeFormatter fRange = new RangeFormatter(shRange[startCell].Resize[ColumnSize: width]);
+                    RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[startCell].Resize[ColumnSize: width]);
 
                     fRange.Merge();
                     fRange.HorizontalCenterAlignment();
@@ -117,7 +116,7 @@ namespace SecretaryST.SheetGenerators
                 {
                     int cellOffset = end ? width - 1 : 0;
 
-                    RangeFormatter fRange = new RangeFormatter(shRange[sCompeeteDatePrompt].Offset[ColumnOffset: cellOffset]);
+                    RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sCompeeteDatePrompt].Offset[ColumnOffset: cellOffset]);
 
                     if (end) { fRange.HorizontalRightAlignment(); }
                     else { fRange.HorizontalLeftAlignment(); }
@@ -147,7 +146,7 @@ namespace SecretaryST.SheetGenerators
 
                     void HeaderItem(int iCol, string val)
                     {
-                        RangeFormatter fRange = new RangeFormatter(shRange[sTableHeader].Offset[ColumnOffset: iCol - 1]);
+                        RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sTableHeader].Offset[ColumnOffset: iCol - 1]);
 
                         fRange.Bold(true);
                         fRange.HorizontalCenterAlignment();
@@ -163,14 +162,16 @@ namespace SecretaryST.SheetGenerators
             }
             void GenFooter(int dataSize)
             {
-                RangeFormatter fRange = new RangeFormatter(shRange[sFooter].Offset[RowOffset: dataSize]);
+                RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sFooter].Offset[RowOffset: dataSize]);
 
                 fRange.TextH2();
                 fRange.HorizontalLeftAlignment();
                 fRange.VerticalCenterAlignment();
 
-                fRange.Range.Value("Главный секретарь _____________________ /И. И. Иванова, СС1К, г. Урюпинск/");
+                fRange.Range.Value = "Главный секретарь _____________________ /И. И. Иванова, СС1К, г. Урюпинск/";
             }
+
+            //todo: resize column width
         }
     }
 }

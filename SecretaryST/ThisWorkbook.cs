@@ -1,4 +1,7 @@
-﻿namespace SecretaryST
+﻿using SecretaryST.SheetGenerators;
+using System.Collections.Generic;
+
+namespace SecretaryST
 {
     public partial class ThisWorkbook
     {
@@ -24,5 +27,15 @@
 
         #endregion
 
+        public static void StartProtocol1()
+        {
+            List<Dictionary<string, object>> tempList = new List<Dictionary<string, object>>()
+            {
+                new Dictionary<string, object>{ { "asd", "asd" } }
+            };
+
+            StartProtocolGenerator generator = new StartProtocolGenerator(Enums.DistanceGroupAmount.One);
+            generator.Create(tempList);
+        }
     }
 }

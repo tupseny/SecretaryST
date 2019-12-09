@@ -12,7 +12,7 @@ namespace SecretaryST.SheetGenerators
         private readonly ExcelInter._Application app;
 
         private string sheetName;
-        private Worksheet oSheet;
+        private ExcelInter.Worksheet oSheet;
         
 
         protected GeneratorAbstract()
@@ -22,7 +22,7 @@ namespace SecretaryST.SheetGenerators
         }
 
         //Getter & Setters
-        protected Worksheet OSheet { get => oSheet; set => oSheet = value; }
+        protected ExcelInter.Worksheet OSheet { get => oSheet; set => oSheet = value; }
         protected ExcelInter._Application App { get => app; }
         protected Microsoft.Office.Tools.Excel.Workbook OWorkbook { get => oWorkbook; }
         protected string SheetName { get => sheetName; set => sheetName = value; }
@@ -38,7 +38,8 @@ namespace SecretaryST.SheetGenerators
 
         protected void AddSheet()
         {
-            Worksheet sh = OWorkbook.Worksheets.Add(After: oWorkbook.Worksheets[oWorkbook.Worksheets.Count]);
+            Globals.ThisWorkbook.Worksheets.Add(After: Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count]);
+            ExcelInter.Worksheet sh = (ExcelInter.Worksheet) Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count];
 
             if (SheetName is null)
             {
