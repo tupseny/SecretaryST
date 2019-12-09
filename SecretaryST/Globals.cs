@@ -63,6 +63,10 @@ namespace SecretaryST
 
             public const string OwnerOrganisation = "Какая-то проводящая организация";
             public const string CompeeteName = "Название соревнований";
+            public static readonly string CompeeteDateStart = new DateTime().ToString(Globals.Strings.dateFormatString, Globals.Strings.dateFormatProvider);
+            public static readonly string CompeeteDateEnd = new DateTime(year: new DateTime().Year, month: new DateTime().Month, day: new DateTime().Day + 3)
+                .ToString(Globals.Strings.dateFormatString, Globals.Strings.dateFormatProvider);
+            public const string CompeetePlace = "Санкт-Петербург";
 
             public static readonly DateTime Now = new DateTime();
             public static readonly DateTime FirstStartTime = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
@@ -92,8 +96,6 @@ namespace SecretaryST
             public const string Dist3NameShort = "ГРУППА";
 
             public const string StartProtocol = "стартовый протокол";
-            public const string DatePrompt = "дата проведения";
-            public const string PlacePrompt = "место проведения";
 
             public static readonly Dictionary<string, string> StartProtocolHeaders = new Dictionary<string, string>()
             {
@@ -110,6 +112,9 @@ namespace SecretaryST
                 { "distance-rang", "Ранг" },
                 { "start-time", "Время старта" },
             };
+
+            public static readonly IFormatProvider dateFormatProvider = System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU");
+            public const string dateFormatString = "d MMM";
         }
     }
 }

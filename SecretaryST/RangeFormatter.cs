@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Tools.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 using ExcelI = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST
@@ -28,10 +22,20 @@ namespace SecretaryST
         {
             Range.Merge();
         }
-        
+
         public void HorizontalCenterAlignment()
         {
             Range.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+        }
+
+        public void HorizontalLeftAlignment()
+        {
+            Range.HorizontalAlignment = XlHAlign.xlHAlignLeft;
+        }
+
+        public void HorizontalRightAlignment()
+        {
+            Range.HorizontalAlignment = XlHAlign.xlHAlignRight;
         }
 
         public void VerticalCenterAlignment()
@@ -39,9 +43,19 @@ namespace SecretaryST
             Range.VerticalAlignment = XlVAlign.xlVAlignCenter;
         }
 
-        public void Bold()
+        public void Bold(bool setBold)
         {
-            Range.Font.Bold = true;
+            Range.Font.Bold = setBold;
+        }
+
+        public void Cursive(bool setCursive)
+        {
+            Range.Font.Italic = setCursive;
+        }
+
+        public void Underline(bool setUndeline)
+        {
+            Range.Font.Underline = setUndeline;
         }
 
         public void TextH1()
@@ -57,6 +71,16 @@ namespace SecretaryST
         public void TextH3()
         {
             Range.Font.Size = h3Size;
+        }
+
+        public void Border(bool doubleLine = false, bool bot = false, bool left = false, bool top = false, bool right = false)
+        {
+            Range.Borders.LineStyle = doubleLine ? XlLineStyle.xlDouble : XlLineStyle.xlContinuous;
+            Range.Borders.Weight = XlBorderWeight.xlThin;
+            if (bot) { Range.Borders[XlBordersIndex.xlEdgeBottom].Color = XlColorIndex.xlColorIndexAutomatic; }
+            if (left) { Range.Borders[XlBordersIndex.xlEdgeLeft].Color = XlColorIndex.xlColorIndexAutomatic; }
+            if (top) { Range.Borders[XlBordersIndex.xlEdgeTop].Color = XlColorIndex.xlColorIndexAutomatic; }
+            if (right) { Range.Borders[XlBordersIndex.xlEdgeRight].Color = XlColorIndex.xlColorIndexAutomatic; }
         }
     }
 }

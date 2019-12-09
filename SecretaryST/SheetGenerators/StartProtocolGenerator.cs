@@ -1,7 +1,8 @@
 ﻿using Microsoft.Office.Tools.Excel;
-using ExcelI = Microsoft.Office.Interop.Excel;
 using SecretaryST.Enums;
+using System;
 using System.Collections.Generic;
+using Excell = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -68,14 +69,71 @@ namespace SecretaryST.SheetGenerators
             void GenHead(int width)
             {
                 //owner organisation
-                RangeFormatter fRange = new RangeFormatter(shRange[sOwnerOrganisation].Resize[ColumnSize: width]);
-                fRange.Merge();
-                fRange.HorizontalCenterAlignment();
-                fRange.VerticalCenterAlignment();
-                fRange.TextH3();
-                fRange.Range.Value = Globals.Options.OwnerOrganisation;
-                
-                //
+                HeadTitle(sOwnerOrganisation, 3, Globals.Options.OwnerOrganisation);
+
+                //compeete name
+                RangeFormatter fTmp = HeadTitle(sCompeeteName, 2, Globals.Options.CompeeteName, bold: true);
+                fTmp.Border(doubleLine: true, bot: true);
+
+                //protocol title
+                HeadTitle(sProtocolTitle, 1, Globals.Strings.StartProtocol, bold: true);
+
+                //distance name
+                HeadTitle(sDistanceName, 2, Globals.Strings.Dist1Name, bold: true, underline: true);
+
+                //date prompt
+                string sDate = Globals.Options.CompeeteDateStart + " - " + Globals.Options.CompeeteDateEnd;
+                HeadPrompt(sCompeeteDatePrompt, sDate);
+
+                //place prompt
+                string sPlace = Globals.Options.CompeetePlace;
+                HeadPrompt(sCompeeteDatePrompt, sPlace, end: true);
+
+
+                RangeFormatter HeadTitle(string startCell, int headerLvl, string val, bool bold = false, bool underline = false)
+                {
+                    RangeFormatter fRange = new RangeFormatter(shRange[startCell].Resize[ColumnSize: width]);
+
+                    fRange.Merge();
+                    fRange.HorizontalCenterAlignment();
+                    fRange.VerticalCenterAlignment();
+                    fRange.Bold(bold);
+                    fRange.Underline(underline);
+
+                    switch (headerLvl)
+                    {
+                        case 1:
+                            fRange.TextH1();
+                            break;
+                        case 2:
+                            fRange.TextH2();
+                            break;
+                        case 3:
+                            fRange.TextH3();
+                            break;
+                        default:
+                            throw new ArgumentException("Not valid header level", nameof(headerLvl));
+                    }
+
+                    fRange.Range.Value = val.ToUpper(System.Globalization.CultureInfo.CurrentCulture);
+                    return fRange;
+                }
+
+                RangeFormatter HeadPrompt(string startCell, string val, bool end = false)
+                {
+                    int cellOffset = end ? width - 1 : 0;
+
+                    RangeFormatter fRange = new RangeFormatter(shRange[sCompeeteDatePrompt].Offset[ColumnOffset: cellOffset]);
+
+                    if (end) { fRange.HorizontalRightAlignment }
+                    else { fRange.HorizontalLeftAlignment }
+
+                    fRange.Cursive(true);
+                    fRange.TextH3();
+
+                    fRange.Range.Value = val;
+                    return fRange;
+                }
             }
         }
 
