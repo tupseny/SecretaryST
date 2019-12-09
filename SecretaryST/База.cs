@@ -75,10 +75,5 @@ namespace SecretaryST
 
         #endregion
 
-        public static void AddList(List<DatabaseEntry> list)
-        {
-
-        }
-
     }
 }

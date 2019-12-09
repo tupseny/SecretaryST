@@ -43,6 +43,11 @@ namespace SecretaryST
             Range.VerticalAlignment = XlVAlign.xlVAlignCenter;
         }
 
+        public void VerticalBottomAlignment()
+        {
+            Range.VerticalAlignment = XlVAlign.xlVAlignBottom;
+        }
+
         public void Bold(bool setBold)
         {
             Range.Font.Bold = setBold;
@@ -73,6 +78,11 @@ namespace SecretaryST
             Range.Font.Size = h3Size;
         }
 
+        public void WrapText()
+        {
+            Range.WrapText = true;
+        }
+
         public void Border(bool doubleLine = false, bool bot = false, bool left = false, bool top = false, bool right = false)
         {
             Range.Borders.LineStyle = doubleLine ? XlLineStyle.xlDouble : XlLineStyle.xlContinuous;
@@ -81,6 +91,12 @@ namespace SecretaryST
             if (left) { Range.Borders[XlBordersIndex.xlEdgeLeft].Color = XlColorIndex.xlColorIndexAutomatic; }
             if (top) { Range.Borders[XlBordersIndex.xlEdgeTop].Color = XlColorIndex.xlColorIndexAutomatic; }
             if (right) { Range.Borders[XlBordersIndex.xlEdgeRight].Color = XlColorIndex.xlColorIndexAutomatic; }
+        }
+
+        public void FillColor()
+        {
+            Range.Interior.Pattern = XlPattern.xlPatternSolid;
+            Range.Interior.ColorIndex = 15;
         }
     }
 }

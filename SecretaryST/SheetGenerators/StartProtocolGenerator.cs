@@ -2,7 +2,6 @@
 using SecretaryST.Enums;
 using System;
 using System.Collections.Generic;
-using Excell = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -19,6 +18,7 @@ namespace SecretaryST.SheetGenerators
         private const string sDistanceName = "A5";
         private const string sTableHeader = "A6";
         private const string sTableDataFirst = "A7";
+        private const string sFooter = "A8";
 
         private const int nOffsetAfterTable = 1;
 
@@ -38,19 +38,16 @@ namespace SecretaryST.SheetGenerators
         public override void Create(List<Dictionary<string, object>> data)
         {
             //enable permormance mode.
-            PerformanceMode(true);
+            //PerformanceMode(true);
 
             //Create new sheet with name and save reference into variable
             AddSheet();
 
-            //build start protocol structure and formation
+            //build start protocol structure, formate and insert data
             BuildStructure();
 
-            //insert data into sheet
-            InsertData();
-
             //disable permormance mode
-            PerformanceMode(false);
+            //PerformanceMode(false);
         }
 
         //private methods
@@ -59,12 +56,9 @@ namespace SecretaryST.SheetGenerators
             List<string> headers = Globals.Options.startProtocolHeaders;
             Worksheet_RangeType shRange = base.OSheet.Range;
 
-            switch (grAmount)
-            {
-                case DistanceGroupAmount.One:
-                    GenHead(headers.Count);
-                    break;
-            }
+            GenHead(headers.Count);
+            int n = GenBody(headers);
+            GenFooter(n);
 
             void GenHead(int width)
             {
@@ -125,8 +119,8 @@ namespace SecretaryST.SheetGenerators
 
                     RangeFormatter fRange = new RangeFormatter(shRange[sCompeeteDatePrompt].Offset[ColumnOffset: cellOffset]);
 
-                    if (end) { fRange.HorizontalRightAlignment }
-                    else { fRange.HorizontalLeftAlignment }
+                    if (end) { fRange.HorizontalRightAlignment(); }
+                    else { fRange.HorizontalLeftAlignment(); }
 
                     fRange.Cursive(true);
                     fRange.TextH3();
@@ -135,11 +129,48 @@ namespace SecretaryST.SheetGenerators
                     return fRange;
                 }
             }
-        }
+            int GenBody(List<string> lHeaders)
+            {
+                Header();
 
-        private void InsertData()
-        {
+                return 0;
 
+                void Header()
+                {
+                    int i = 1;
+                    foreach (string key in lHeaders)
+                    {
+                        HeaderItem(i, Globals.Strings.StartProtocolHeaders[key]);
+
+                        i++;
+                    }
+
+                    void HeaderItem(int iCol, string val)
+                    {
+                        RangeFormatter fRange = new RangeFormatter(shRange[sTableHeader].Offset[ColumnOffset: iCol - 1]);
+
+                        fRange.Bold(true);
+                        fRange.HorizontalCenterAlignment();
+                        fRange.VerticalBottomAlignment();
+                        fRange.TextH3();
+                        fRange.WrapText();
+                        fRange.Border(top: true, bot: true, left: true, right: true);
+                        fRange.FillColor();
+
+                        fRange.Range.Value = val;
+                    }
+                }
+            }
+            void GenFooter(int dataSize)
+            {
+                RangeFormatter fRange = new RangeFormatter(shRange[sFooter].Offset[RowOffset: dataSize]);
+
+                fRange.TextH2();
+                fRange.HorizontalLeftAlignment();
+                fRange.VerticalCenterAlignment();
+
+                fRange.Range.Value("Главный секретарь _____________________ /И. И. Иванова, СС1К, г. Урюпинск/");
+            }
         }
     }
 }
