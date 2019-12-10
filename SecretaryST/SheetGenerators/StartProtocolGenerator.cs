@@ -23,6 +23,9 @@ namespace SecretaryST.SheetGenerators
 
         private const int nOffsetAfterTable = 1;
 
+        private const double dHeaderRowHeight = 26;
+        private const double dDataRowHeight = 12;
+
         //constructors
         public StartProtocolGenerator(DistanceGroupAmount type)
         {
@@ -73,28 +76,28 @@ namespace SecretaryST.SheetGenerators
             void GenHead(int width)
             {
                 //owner organisation
-                HeadTitle(sOwnerOrganisation, 3, Globals.Options.OwnerOrganisation);
+                HeadTitle(sOwnerOrganisation, 3, Globals.Options.OwnerOrganisation, cellHeight: 42);
 
                 //compeete name
-                RangeFormatter fTmp = HeadTitle(sCompeeteName, 2, Globals.Options.CompeeteName, bold: true);
+                RangeFormatter fTmp = HeadTitle(sCompeeteName, 2, Globals.Options.CompeeteName, bold: true, cellHeight: 39);
                 fTmp.Border(doubleLine: true, bot: true);
 
                 //protocol title
-                HeadTitle(sProtocolTitle, 1, Globals.Strings.StartProtocol, bold: true);
+                HeadTitle(sProtocolTitle, 1, Globals.Strings.StartProtocol, bold: true, cellHeight: 25);
 
                 //distance name
-                HeadTitle(sDistanceName, 2, Globals.Strings.Dist1Name, bold: true, underline: true);
+                HeadTitle(sDistanceName, 2, Globals.Strings.Dist1Name, bold: true, underline: true, cellHeight: 40);
 
                 //date prompt
                 string sDate = Globals.Options.CompeeteDateStart + " - " + Globals.Options.CompeeteDateEnd;
-                HeadPrompt(sCompeeteDatePrompt, sDate);
+                HeadPrompt(sDate);
 
                 //place prompt
                 string sPlace = Globals.Options.CompeetePlace;
-                HeadPrompt(sCompeeteDatePrompt, sPlace, end: true);
+                HeadPrompt(sPlace, end: true);
 
 
-                RangeFormatter HeadTitle(string startCell, int headerLvl, string val, bool bold = false, bool underline = false)
+                RangeFormatter HeadTitle(string startCell, int headerLvl, string val, double cellHeight, bool bold = false, bool underline = false)
                 {
                     RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[startCell].Resize[ColumnSize: width]);
 
@@ -120,11 +123,15 @@ namespace SecretaryST.SheetGenerators
                     }
 
                     fRange.Range.Value = val.ToUpper(System.Globalization.CultureInfo.CurrentCulture);
+
+                    fRange.SetRowHeight(cellHeight);
+
                     return fRange;
                 }
 
-                RangeFormatter HeadPrompt(string startCell, string val, bool end = false)
+                RangeFormatter HeadPrompt(string val, bool end = false)
                 {
+                    const double cellHeight = 13.5;
                     int cellOffset = end ? width - 1 : 0;
 
                     RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sCompeeteDatePrompt].Offset[ColumnOffset: cellOffset]);
@@ -134,6 +141,8 @@ namespace SecretaryST.SheetGenerators
 
                     fRange.Cursive(true);
                     fRange.TextH3();
+
+                    fRange.SetRowHeight(cellHeight);
 
                     fRange.Range.Value = val;
                     return fRange;
@@ -156,6 +165,8 @@ namespace SecretaryST.SheetGenerators
                     int iRow = 0;
                     foreach (Dictionary<string, string> dictRow in lData)
                     {
+                        new RangeFormatter(rn.Offset[RowOffset: iRow]).SetRowHeight(dDataRowHeight);
+
                         int iCol = 0;
                         foreach (string key in Globals.Options.startProtocolHeaders)
                         {
@@ -184,6 +195,8 @@ namespace SecretaryST.SheetGenerators
                 }
                 void Header()
                 {
+                    new RangeFormatter(OSheet.Range[sTableHeader]).SetRowHeight(dHeaderRowHeight);
+
                     int i = 1;
                     foreach (string key in lHeaders)
                     {

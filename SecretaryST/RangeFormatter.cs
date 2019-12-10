@@ -18,6 +18,11 @@ namespace SecretaryST
             this.range = range;
         }
 
+        public void SetRowHeight(double h)
+        {
+            Range.Rows.RowHeight = h;
+        }
+
         public void SetColWidth(double w)
         {
             Range.Columns.ColumnWidth = w;
