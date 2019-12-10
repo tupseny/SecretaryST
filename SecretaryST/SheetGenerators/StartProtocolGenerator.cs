@@ -39,7 +39,7 @@ namespace SecretaryST.SheetGenerators
         public override void Create(Distance distance, string suffix = "")
         {
             //enable permormance mode.
-            //PerformanceMode(true);
+            PerformanceMode(true);
 
             //Create new sheet with name and save reference into variable
             AddSheet(suffix: suffix);
@@ -48,7 +48,7 @@ namespace SecretaryST.SheetGenerators
             BuildStructure(distance);
 
             //disable permormance mode
-            //PerformanceMode(false);
+            PerformanceMode(false);
         }
 
         //private methods

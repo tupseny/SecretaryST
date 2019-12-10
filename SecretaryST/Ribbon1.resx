@@ -135,6 +135,21 @@
   <data name="&gt;&gt;removeOtherSheets.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="visualEffectsToggle.Label" xml:space="preserve">
+    <value>Визуальные эффекты</value>
+  </data>
+  <data name="&gt;&gt;visualEffectsToggle.Name" xml:space="preserve">
+    <value>visualEffectsToggle</value>
+  </data>
+  <data name="&gt;&gt;visualEffectsToggle.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ToggleButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;visualEffectsToggle.Parent" xml:space="preserve">
+    <value>group1</value>
+  </data>
+  <data name="&gt;&gt;visualEffectsToggle.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="group1.Label" xml:space="preserve">
     <value>Управление</value>
   </data>
@@ -166,10 +181,61 @@
     <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;importBut.Parent" xml:space="preserve">
-    <value>box1</value>
+    <value>box3</value>
   </data>
   <data name="&gt;&gt;importBut.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;box3.Name" xml:space="preserve">
+    <value>box3</value>
+  </data>
+  <data name="&gt;&gt;box3.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;box3.Parent" xml:space="preserve">
+    <value>box1</value>
+  </data>
+  <data name="&gt;&gt;box3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;box2.Name" xml:space="preserve">
+    <value>box2</value>
+  </data>
+  <data name="&gt;&gt;box2.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;box2.Parent" xml:space="preserve">
+    <value>box1</value>
+  </data>
+  <data name="&gt;&gt;box2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numOfPersons.Label" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;numOfPersons.Name" xml:space="preserve">
+    <value>numOfPersons</value>
+  </data>
+  <data name="&gt;&gt;numOfPersons.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.LabelView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;numOfPersons.Parent" xml:space="preserve">
+    <value>box4</value>
+  </data>
+  <data name="&gt;&gt;numOfPersons.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;box4.Name" xml:space="preserve">
+    <value>box4</value>
+  </data>
+  <data name="&gt;&gt;box4.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;box4.Parent" xml:space="preserve">
+    <value>box1</value>
+  </data>
+  <data name="&gt;&gt;box4.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;box1.Name" xml:space="preserve">
     <value>box1</value>
@@ -208,51 +274,51 @@
     <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;startProt1.Parent" xml:space="preserve">
-    <value>box2</value>
+    <value>startBox</value>
   </data>
   <data name="&gt;&gt;startProt1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="button3.Label" xml:space="preserve">
+  <data name="startProt2.Label" xml:space="preserve">
     <value>Связка</value>
   </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
+  <data name="&gt;&gt;startProt2.Name" xml:space="preserve">
+    <value>startProt2</value>
   </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+  <data name="&gt;&gt;startProt2.Type" xml:space="preserve">
     <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
-    <value>box2</value>
+  <data name="&gt;&gt;startProt2.Parent" xml:space="preserve">
+    <value>startBox</value>
   </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;startProt2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="button4.Label" xml:space="preserve">
+  <data name="startProt4.Label" xml:space="preserve">
     <value>Группа</value>
   </data>
-  <data name="&gt;&gt;button4.Name" xml:space="preserve">
-    <value>button4</value>
+  <data name="&gt;&gt;startProt4.Name" xml:space="preserve">
+    <value>startProt4</value>
   </data>
-  <data name="&gt;&gt;button4.Type" xml:space="preserve">
+  <data name="&gt;&gt;startProt4.Type" xml:space="preserve">
     <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
-    <value>box2</value>
+  <data name="&gt;&gt;startProt4.Parent" xml:space="preserve">
+    <value>startBox</value>
   </data>
-  <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;startProt4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;box2.Name" xml:space="preserve">
-    <value>box2</value>
+  <data name="&gt;&gt;startBox.Name" xml:space="preserve">
+    <value>startBox</value>
   </data>
-  <data name="&gt;&gt;box2.Type" xml:space="preserve">
+  <data name="&gt;&gt;startBox.Type" xml:space="preserve">
     <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="&gt;&gt;box2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;startBox.Parent" xml:space="preserve">
     <value>group3</value>
   </data>
-  <data name="&gt;&gt;box2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;startBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="group3.Label" xml:space="preserve">

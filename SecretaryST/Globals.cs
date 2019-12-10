@@ -82,6 +82,7 @@ namespace SecretaryST
                 "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "chip-nr", "distance-rang", "start-time"
             };
 
+            public static bool enableVisualEffects = false;
         }
 
 

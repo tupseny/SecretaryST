@@ -33,6 +33,7 @@ namespace SecretaryST
         private static List<Distance> lDistances;
 
         private static bool inProgress = false;
+        private static int nPersons = 0;
 
         static Excel.Worksheet oSheet;
 
@@ -118,8 +119,9 @@ namespace SecretaryST
                 AlertBoxes.GroupNotFullalert(e.StructGroupIndex.GroupIndex, e.StructGroupIndex.Amnt);
             }
 
-            InWork(false);
+            База.IncrementEntriesCount(nPersons);
 
+            InWork(false);
         }
 
         private static void GetData()
@@ -128,6 +130,7 @@ namespace SecretaryST
             ExcelInterop.Range dataRng = oSheet.Range[sDataCellStart].Resize[nRows, nDataCols];
 
             lData = Utils.GetValues(dataRng);
+            nPersons = lData.Count;
         }
 
         private static void ConvertDataToModels()

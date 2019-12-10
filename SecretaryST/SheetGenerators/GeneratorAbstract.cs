@@ -14,7 +14,6 @@ namespace SecretaryST.SheetGenerators
 
         private string sheetName;
         private ExcelInter.Worksheet oSheet;
-        
 
         protected GeneratorAbstract()
         {
@@ -31,7 +30,7 @@ namespace SecretaryST.SheetGenerators
         //Protected Methods
         protected void PerformanceMode(bool activate)
         {
-            this.App.ScreenUpdating = !activate;
+            this.App.ScreenUpdating = Globals.Options.enableVisualEffects ? true : !activate;
             this.App.Calculation = activate ? ExcelInter.XlCalculation.xlCalculationManual : ExcelInter.XlCalculation.xlCalculationAutomatic;
             this.App.EnableEvents = !activate;
             this.App.StatusBar = !activate;

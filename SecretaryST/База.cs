@@ -34,10 +34,14 @@ namespace SecretaryST
         private static List<Distance> dbDict;
         //last row of data in DB
         private static int lastRow;
+        //num of people
+        private static int numEntries;
 
         //Getters and Settters
         public static int LastRow { get => lastRow; }
         internal static List<Distance> DbList { get => dbDict; }
+        public static int NumEntries { get => numEntries;  }
+
         internal static void AddMany(IEnumerable<Distance> collection)
         {
             DbList.AddRange(collection);
@@ -46,12 +50,17 @@ namespace SecretaryST
         {
             DbList.Add(item);
         }
+        internal static void IncrementEntriesCount(int count)
+        {
+            numEntries += count;
+        }
 
 
         //Event methods
         private void Лист3_Startup(object sender, System.EventArgs e)
         {
             oSheet = this.Base;
+            numEntries = 0;
 
             LoadDB();
 
