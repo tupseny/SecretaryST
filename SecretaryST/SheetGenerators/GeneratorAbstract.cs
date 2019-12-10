@@ -3,6 +3,7 @@ using ExcelInter = Microsoft.Office.Interop.Excel;
 using System;
 using SecretaryST.Enums;
 using System.Collections.Generic;
+using SecretaryST.Models;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -36,7 +37,7 @@ namespace SecretaryST.SheetGenerators
             this.App.StatusBar = !activate;
         }
 
-        protected void AddSheet()
+        protected void AddSheet(string suffix = "")
         {
             Globals.ThisWorkbook.Worksheets.Add(After: Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count]);
             ExcelInter.Worksheet sh = (ExcelInter.Worksheet) Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count];
@@ -46,12 +47,12 @@ namespace SecretaryST.SheetGenerators
                 throw new InvalidOperationException("Sheet name not initialized");
             }
 
-            sh.Name = SheetName;
+            sh.Name = SheetName + "_" + suffix;
 
             oSheet = sh;
         }
 
         //Abstract Methods
-        abstract public void Create(List<Dictionary<string, object>> data);
+        abstract public void Create(Distance distance, string suffix = "");
     }
 }

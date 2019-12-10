@@ -1,6 +1,8 @@
 ﻿using SecretaryST.Enums;
+using SecretaryST.Models;
 using System;
 using System.Collections.Generic;
+using ExcelInter = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -34,23 +36,23 @@ namespace SecretaryST.SheetGenerators
         public DistanceGroupAmount GrAmount { get => grAmount; }
 
         //Public methods
-        public override void Create(List<Dictionary<string, object>> data)
+        public override void Create(Distance distance, string suffix = "")
         {
             //enable permormance mode.
             //PerformanceMode(true);
 
             //Create new sheet with name and save reference into variable
-            AddSheet();
+            AddSheet(suffix: suffix);
 
             //build start protocol structure, formate and insert data
-            BuildStructure();
+            BuildStructure(distance);
 
             //disable permormance mode
             //PerformanceMode(false);
         }
 
         //private methods
-        private void BuildStructure()
+        private void BuildStructure(Distance distance)
         {
             List<string> headers = Globals.Options.startProtocolHeaders;
             //Microsoft.Office.Interop.Excel.Range shRange = base.OSheet.Range;
@@ -132,8 +134,33 @@ namespace SecretaryST.SheetGenerators
             {
                 Header();
 
-                return 0;
+                //return number of data inserted
+                return Data(distance);
 
+                int Data(Distance data)
+                {
+                    int nInserted = 0;
+
+                    List<Dictionary<string, string>> lData = data.GetStringRepresentList();
+                    ExcelInter.Range rn = OSheet.Range[sTableDataFirst];
+
+                    int iRow = 0;
+                    foreach (Dictionary<string, string> dictRow in lData)
+                    {
+                        int iCol = 0;
+                        foreach (string key in Globals.Options.startProtocolHeaders)
+                        {
+                            rn.Offset[RowOffset: iRow, ColumnOffset: iCol].Value = dictRow[key];
+
+                            iCol++;
+                        }
+
+                        iRow++;
+                        nInserted++;
+                    }
+
+                    return nInserted;
+                }
                 void Header()
                 {
                     int i = 1;
@@ -160,9 +187,9 @@ namespace SecretaryST.SheetGenerators
                     }
                 }
             }
-            void GenFooter(int dataSize)
+            void GenFooter(int dataCount)
             {
-                RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sFooter].Offset[RowOffset: dataSize]);
+                RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sFooter].Offset[RowOffset: dataCount]);
 
                 fRange.TextH2();
                 fRange.HorizontalLeftAlignment();

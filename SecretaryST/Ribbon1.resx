@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button1.Label" xml:space="preserve">
-    <value>Тест 1</value>
+  <data name="removeOtherSheets.Label" xml:space="preserve">
+    <value>Удалить лишние листы</value>
   </data>
-  <data name="button1.Tag" xml:space="preserve">
+  <data name="removeOtherSheets.Tag" xml:space="preserve">
     <value>тестовая кнопка</value>
   </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
+  <data name="&gt;&gt;removeOtherSheets.Name" xml:space="preserve">
+    <value>removeOtherSheets</value>
   </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="&gt;&gt;removeOtherSheets.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;removeOtherSheets.Parent" xml:space="preserve">
     <value>group1</value>
   </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;removeOtherSheets.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="group1.Label" xml:space="preserve">
@@ -142,7 +142,7 @@
     <value>group1</value>
   </data>
   <data name="&gt;&gt;group1.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;group1.Parent" xml:space="preserve">
     <value>secretary_tab</value>
@@ -163,7 +163,7 @@
     <value>importBut</value>
   </data>
   <data name="&gt;&gt;importBut.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;importBut.Parent" xml:space="preserve">
     <value>box1</value>
@@ -175,7 +175,7 @@
     <value>box1</value>
   </data>
   <data name="&gt;&gt;box1.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;box1.Parent" xml:space="preserve">
     <value>group2</value>
@@ -190,7 +190,7 @@
     <value>group2</value>
   </data>
   <data name="&gt;&gt;group2.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;group2.Parent" xml:space="preserve">
     <value>secretary_tab</value>
@@ -205,7 +205,7 @@
     <value>startProt1</value>
   </data>
   <data name="&gt;&gt;startProt1.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;startProt1.Parent" xml:space="preserve">
     <value>box2</value>
@@ -220,7 +220,7 @@
     <value>button3</value>
   </data>
   <data name="&gt;&gt;button3.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;button3.Parent" xml:space="preserve">
     <value>box2</value>
@@ -235,7 +235,7 @@
     <value>button4</value>
   </data>
   <data name="&gt;&gt;button4.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;button4.Parent" xml:space="preserve">
     <value>box2</value>
@@ -247,7 +247,7 @@
     <value>box2</value>
   </data>
   <data name="&gt;&gt;box2.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.BoxView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;box2.Parent" xml:space="preserve">
     <value>group3</value>
@@ -262,7 +262,7 @@
     <value>group3</value>
   </data>
   <data name="&gt;&gt;group3.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GroupView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;group3.Parent" xml:space="preserve">
     <value>secretary_tab</value>
@@ -280,7 +280,7 @@
     <value>secretary_tab</value>
   </data>
   <data name="&gt;&gt;secretary_tab.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.TabView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.TabView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -289,7 +289,7 @@
     <value>SecretaryRibbon.OfficeMenu</value>
   </data>
   <data name="&gt;&gt;SecretaryRibbon.OfficeMenu.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.OfficeMenuView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.OfficeMenuView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="&gt;&gt;SecretaryRibbon.OfficeMenu.Parent" xml:space="preserve">
     <value>$this</value>
@@ -301,6 +301,6 @@
     <value>SecretaryRibbon</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GenericRibbonView, microsoft.visualstudio.tools.office.designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.GenericRibbonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

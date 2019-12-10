@@ -76,6 +76,42 @@ namespace SecretaryST
             return res;
         }
 
+        public static bool ReadBoolValue(List<object> list, int i)
+        {
+            object obj = list[i];
+            bool res;
+
+            if (obj is string)
+            {
+                string sObj = (string)obj;
+                switch (sObj.ToUpper())
+                {
+                    case "ДА":
+                    case "TRUE":
+                    case "YES":
+                        res = true;
+                        break;
+                    case "НЕТ":
+                    case "NO":
+                    case "FALSE":
+                        res = false;
+                        break;
+                    default:
+                        throw new InvalidFieldTypeException("BOOL", obj, iCol: i);
+                }
+            }
+            else if(obj is bool)
+            {
+                res = (bool)obj;
+            }
+            else
+            {
+                throw new InvalidFieldTypeException("BOOL", obj, iCol: i);
+            }
+
+            return res;
+        }
+
         public static DateTime ReadDateTimeValue(List<object> list, int i)
         {
             object obj = list[i];

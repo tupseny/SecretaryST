@@ -37,7 +37,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecretaryRibbon));
             this.secretary_tab = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
+            this.removeOtherSheets = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.box1 = this.Factory.CreateRibbonBox();
             this.importBut = this.Factory.CreateRibbonButton();
@@ -65,14 +65,14 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.button1);
+            this.group1.Items.Add(this.removeOtherSheets);
             resources.ApplyResources(this.group1, "group1");
             this.group1.Name = "group1";
             // 
-            // button1
+            // removeOtherSheets
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
+            resources.ApplyResources(this.removeOtherSheets, "removeOtherSheets");
+            this.removeOtherSheets.Name = "removeOtherSheets";
             // 
             // group2
             // 
@@ -145,7 +145,7 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab secretary_tab;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton removeOtherSheets;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton importBut;
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;

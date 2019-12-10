@@ -1,5 +1,8 @@
-﻿using SecretaryST.SheetGenerators;
+﻿using SecretaryST.Enums;
+using SecretaryST.Models;
+using SecretaryST.SheetGenerators;
 using System.Collections.Generic;
+using ExcelInter = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST
 {
@@ -27,15 +30,69 @@ namespace SecretaryST
 
         #endregion
 
-        public static void StartProtocol1()
+        public static void StartProtocol1Generate()
         {
-            List<Dictionary<string, object>> tempList = new List<Dictionary<string, object>>()
-            {
-                new Dictionary<string, object>{ { "asd", "asd" } }
-            };
+            DistanceGroupAmount amnt = DistanceGroupAmount.One;
 
-            StartProtocolGenerator generator = new StartProtocolGenerator(Enums.DistanceGroupAmount.One);
-            generator.Create(tempList);
+            //all distances
+            List<Distance> lDistances = База.DbList;
+
+            //get all protocol variants
+            Dictionary<DistanceLevels, List<DistanceGroupType>> lVariants = new Dictionary<DistanceLevels, List<DistanceGroupType>>();
+            foreach (Distance d in lDistances)
+            {
+                DistanceLevels level = d.Level;
+                if (!lVariants.ContainsKey(level))
+                {
+                    lVariants.Add(level, new List<DistanceGroupType>());
+                }
+
+                foreach (KeyValuePair<Structs.GroupIndexAmountStruct, DistanceGroup> kvPair in d.Groups)
+                {
+                    if (!lVariants[level].Contains(kvPair.Value.Type))
+                    {
+                        lVariants[level].Add(kvPair.Value.Type);
+                    }
+                }
+            }
+
+            //generate protocol for each distance type
+            foreach (KeyValuePair<DistanceLevels, List<DistanceGroupType>> kvPair in lVariants)
+            {
+                foreach (DistanceGroupType type in kvPair.Value)
+                {
+                    Distance distance = База.GetOneDistance(amnt, kvPair.Key, type);
+
+                    if (distance.Groups.Count > 0)
+                    {
+                        string nameSuffix = kvPair.Key.ToString() + "_" + EnumCasters.GroupTypeStringRepresent(type);
+
+                        StartProtocolGenerator generator = new StartProtocolGenerator(amnt);
+                        generator.Create(distance, suffix: nameSuffix);
+                    }
+                }
+            }
+        }
+
+        public static void RemoveOtherSheets()
+        {
+            List<ExcelInter.Worksheet> toDelete = new List<ExcelInter.Worksheet>();
+
+            foreach (ExcelInter.Worksheet sh in Globals.ThisWorkbook.Worksheets)
+            {
+                if (!Globals.SheetNames.OriginalSheetNames.Contains(sh.Name))
+                {
+                    toDelete.Add(sh);
+                }
+            }
+
+
+            if (AlertBoxes.SureDeleteAllSheetAlert() == System.Windows.Forms.DialogResult.Yes)
+            {
+                Globals.ThisWorkbook.Application.DisplayAlerts = false;
+                toDelete.ForEach(sh => sh.Delete());
+                Globals.ThisWorkbook.Application.DisplayAlerts = true;
+            }
         }
     }
 }

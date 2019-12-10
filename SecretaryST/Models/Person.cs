@@ -28,5 +28,10 @@ namespace SecretaryST.Models
         public string Delegation { get => _Delegation; set => _Delegation = value; }
         internal Rangs Rang { get => _Rang; set => _Rang = value; }
         internal Sex Sex { get => _Sex; set => _Sex = value; }
+
+        internal string BirthYear()
+        {
+            return Birth.Year.ToString();
+        }
     }
 }

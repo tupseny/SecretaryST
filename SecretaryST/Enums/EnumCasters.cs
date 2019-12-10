@@ -53,6 +53,7 @@ namespace SecretaryST.Enums
             }
         }
 
+
         public static Rangs CastToRangs(string s)
         {
             switch (s.ToLower())
@@ -111,6 +112,55 @@ namespace SecretaryST.Enums
                     return "Связка";
                 default:
                     throw new ArgumentException("Not valid argument", nameof(amnt));
+            }
+        }
+
+        public static string RangStringRepresent(Rangs rangs)
+        {
+            switch (rangs)
+            {
+                case Rangs.I:
+                    return "1";
+                case Rangs.II:
+                    return "2";
+                case Rangs.III:
+                    return "3";
+                case Rangs.KMS:
+                    return "КМС";
+                case Rangs.MS:
+                    return "МС";
+                default:
+                    throw new ArgumentException("Not valid argument", nameof(rangs));
+            }
+        }
+
+        public static string SexStringRepresent(Sex sexs)
+        {
+            switch (sexs)
+            {
+                case Sex.Female:
+                    return "Ж";
+                case Sex.Male:
+                    return "М";
+                case Sex.Undefined:
+                    return "";
+                default:
+                    throw new ArgumentException("Not valid argument", nameof(sexs));
+            }
+        }
+
+        public static string GroupTypeStringRepresent(DistanceGroupType val)
+        {
+            switch (val)
+            {
+                case DistanceGroupType.Both:
+                    return "М/Ж";
+                case DistanceGroupType.Female:
+                    return "Ж";
+                case DistanceGroupType.Male:
+                    return "М";
+                default:
+                    throw new ArgumentException("Not valid argument", nameof(val));
             }
         }
     }

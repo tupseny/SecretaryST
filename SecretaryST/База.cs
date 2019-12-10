@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using Microsoft.VisualStudio.Tools.Applications.Runtime;
+﻿using SecretaryST.Enums;
 using SecretaryST.Models;
+using SecretaryST.Structs;
+using System.Collections.Generic;
 using Excel = Microsoft.Office.Tools.Excel;
-using ExcelInterop = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
 
 namespace SecretaryST
 {
@@ -35,19 +30,25 @@ namespace SecretaryST
 
         //current worksheet reference
         private static Excel.Worksheet oSheet;
-        //all DB entries
-        private static List<DatabaseEntry> dbList;
+        //list of all distances
+        private static List<Distance> dbDict;
         //last row of data in DB
         private static int lastRow;
 
+        //Getters and Settters
         public static int LastRow { get => lastRow; }
-
-        private void LoadDB()
+        internal static List<Distance> DbList { get => dbDict; }
+        internal static void AddMany(IEnumerable<Distance> collection)
         {
-            //todo: load all current entries from db into memory
-            dbList = new List<DatabaseEntry>();
+            DbList.AddRange(collection);
+        }
+        internal static void AddOne(Distance item)
+        {
+            DbList.Add(item);
         }
 
+
+        //Event methods
         private void Лист3_Startup(object sender, System.EventArgs e)
         {
             oSheet = this.Base;
@@ -60,6 +61,7 @@ namespace SecretaryST
         private void Лист3_Shutdown(object sender, System.EventArgs e)
         {
         }
+
 
         #region Код, созданный конструктором VSTO
 
@@ -75,5 +77,81 @@ namespace SecretaryST
 
         #endregion
 
+        //PRIVATE methods
+        private void LoadDB()
+        {
+            //todo: load all current entries from db into memory
+            dbDict = new List<Distance>();
+        }
+
+        //INTERNAL methods
+        internal static Distance GetOneDistance(DistanceGroupAmount amnt, DistanceLevels lvl, DistanceGroupType type)
+        {
+            Distance resultDist = new Distance(lvl);
+
+            foreach (Distance d in DbList)
+            {
+                if (d.Level == lvl)
+                {
+                    GroupIndexAmountStruct[] aKeysTmp = new GroupIndexAmountStruct[d.Groups.Keys.Count];
+
+                    int i = 0;
+                    foreach (KeyValuePair<GroupIndexAmountStruct, DistanceGroup> kvItem in d.Groups)
+                    {
+                        if (kvItem.Key.Amnt == amnt && kvItem.Value.Type == type)
+                        {
+                            resultDist.AddGroup(kvItem.Key, kvItem.Value);
+                        }
+                        i++;
+                    }
+                }
+            }
+
+            return resultDist;
+        }
+
+        //public static void InsertAsModel(Dictionary<string, Distance> lModels)
+        //{
+        //    if (lModels is null)
+        //    {
+        //        throw new ArgumentNullException(nameof(lModels));
+        //    }
+
+        //    Dictionary<string, string> dItems = new Dictionary<string, string>();
+
+        //    int iRow = 1;
+        //    foreach (Distance oDistance in lModels.)
+        //    {
+        //        foreach (KeyValuePair<string, string> kvPair in Globals.Strings.StartProtocolHeaders)
+        //        {
+        //        //    { "nr", "№ п/п" },
+        //        //{ "name", "Участник" },
+        //        //{ "person-nr", "Номер участника" },
+        //        //{ "rang", "Разряд" },
+        //        //{ "birth", "Год" },
+        //        //{ "sex", "Пол" },
+        //        //{ "compeete_name", "Зачет" },
+        //        //{ "delegation", "Делегация" },
+        //        //{ "region", "Территория" },
+        //        //{ "chip-nr", "Номер чипа" },
+        //        //{ "distance-rang", "Ранг" },
+        //        //{ "start-time", "Время старта" },
+
+        //            string newKey = kvPair.Key;
+        //            string newVal = "";
+
+        //            switch (newKey)
+        //            {
+        //                case "nr":
+        //                    newVal = iRow.ToString();
+        //                    break;
+        //                case "name":
+        //                    newVal = oDistance.
+        //            }
+        //        }
+
+        //        iRow++;
+        //    }
+        //}
     }
 }

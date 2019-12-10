@@ -5,6 +5,14 @@ namespace SecretaryST
 {
     class AlertBoxes
     {
+        public static DialogResult SureDeleteAllSheetAlert()
+        {
+            string t = "Удалить дополнительные листы";
+            string msg = "Все дополнительные (не основные) листы будут удалены. Вы уверены?";
+
+            return YesNoMsg(msg, t);
+        }
+
         public static void GroupNotFullalert(int grIndex, DistanceGroupAmount grAmount)
         {
             string title = "Неполная группа";
@@ -28,6 +36,11 @@ namespace SecretaryST
         public static void AlertMsg(string msg, string title = "Ошибка")
         {
             MessageBox.Show(msg, title);
+        }
+
+        public static DialogResult YesNoMsg(string msg, string title = "Уверены?")
+        {
+            return MessageBox.Show(msg, title, MessageBoxButtons.YesNo);
         }
     }
 }

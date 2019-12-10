@@ -13,26 +13,13 @@ namespace SecretaryST
     {
         private const int iDelegation = 0;
         private const int iRegion = 1;
-#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
-        private const int iAgent = 2;
-#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
         private const int iName = 3;
         private const int iBirth = 4;
         private const int iRang = 5;
         private const int iSex = 6;
-#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
-        private const int iGroup = 7;
-#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
         private const int iDistanceLevel = 8;
-#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
-        private const int iChipNum = 9;
-#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
-#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
-        private const int iDistancePerson = 10;
-#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
-#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
-        private const int iDistanceDouble = 11;
-#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
+
+        private const int iGroupPersonIndex = 10;
         private const int iGroupDoubleIndex = 12;
         private const int iGroupFourIndex = 13;
 
@@ -42,9 +29,6 @@ namespace SecretaryST
         private const int nDataCols = 14;
         private const int nDataRows = 100;
 
-#pragma warning disable IDE0052 // Удалить непрочитанные закрытые члены
-        private static int nPeople;
-#pragma warning restore IDE0052 // Удалить непрочитанные закрытые члены
         private static List<List<object>> lData;
         private static List<Distance> lDistances;
 
@@ -89,8 +73,8 @@ namespace SecretaryST
 
             InWork(true);
 
-            // List of distances. All new created distances and their link swill be added here
-            lDistances = new List<Distance>();
+            // List of distances. All new created distances and their link will be added here
+            lDistances = База.DbList;
 
             //try-catch. Get data from list. If there is some error then show alert msg to user
             try
@@ -144,7 +128,6 @@ namespace SecretaryST
             ExcelInterop.Range dataRng = oSheet.Range[sDataCellStart].Resize[nRows, nDataCols];
 
             lData = Utils.GetValues(dataRng);
-            nPeople = lData.Count;
         }
 
         private static void ConvertDataToModels()
@@ -174,10 +157,16 @@ namespace SecretaryST
                         sex: EnumCasters.CastToSex(Utils.ReadStringValue(row, iSex))
                     );
 
+                    bool b1 = Utils.ReadBoolValue(row, iGroupPersonIndex);
                     int i2 = Utils.ReadIntValue(row, iGroupDoubleIndex);
                     int i4 = Utils.ReadIntValue(row, iGroupFourIndex);
 
                     DistanceLevels level = EnumCasters.NumberToDistanceLevelType(Utils.ReadIntValue(row, iDistanceLevel));
+
+                    if (b1)
+                    {
+                        linkPersonWithDistances(person, new GroupIndexAmountStruct(-1, DistanceGroupAmount.One), level);
+                    }
 
                     if (i2 != 0)
                     {
@@ -220,19 +209,31 @@ namespace SecretaryST
                         lDistances.Add(tmpDistance);
                     }
                 }
-                catch (Exceptions.GroupFullException)
+                catch (GroupFullException)
                 {
-                    throw new Exceptions.GroupFullException(groupIndexAmountData);
+                    throw new GroupFullException(groupIndexAmountData);
                 }
 
                 void linkPerson(Distance dist)
                 {
-                    // If group already exists then just add to it new member. Else create new group
-                    if (dist.Groups.TryGetValue(key: groupIndexAmountData, value: out DistanceGroup foundGroup))
+                    if (groupIndexAmountData.Amnt == DistanceGroupAmount.One)
                     {
-                        foundGroup.AddMember(prsn);
+                        newGroup();
                     }
                     else
+                    {
+                        // If group already exists then just add to it new member. Else create new group
+                        if (dist.Groups.TryGetValue(key: groupIndexAmountData, value: out DistanceGroup foundGroup))
+                        {
+                            foundGroup.AddMember(prsn);
+                        }
+                        else
+                        {
+                            newGroup();
+                        }
+                    }
+
+                    void newGroup()
                     {
                         DistanceGroup grp = new DistanceGroup(amount: groupIndexAmountData.Amnt);
                         grp.AddMember(prsn);

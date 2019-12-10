@@ -7,6 +7,8 @@ namespace SecretaryST.Models
     {
         private int _ChipNumber;
         private DistanceGroupType _Type;
+        private string _Delegation;
+        private string _Region;
 
         private readonly DistanceGroupAmount _Amount;
         private readonly List<Person> _Members;
@@ -30,8 +32,14 @@ namespace SecretaryST.Models
 
         public int MaxMembers => _MaxMembers;
 
+        public string Delegation { get => _Delegation; set => _Delegation = value; }
+        public string Region { get => _Region; set => _Region = value; }
+
         internal void AddMember(Person p)
         {
+            if (string.IsNullOrEmpty(Delegation)) { Delegation = p.Delegation; }
+            if (string.IsNullOrEmpty(Region)) { Region = p.Region; }
+
             if (IsFull())
             {
                 throw new Exceptions.GroupFullException();
@@ -64,6 +72,70 @@ namespace SecretaryST.Models
             return false;
         }
 
+        public string GetNames(string sep = ",<br>", bool joinRang = false)
+        {
+            string[] aNames = new string[Members.Count];
+            for (int i = 0; i < Members.Count; i++)
+            {
+                aNames[i] = joinRang ? Members[i].Name + " (" + Members[i].Rang + ")" : Members[i].Name;
+            }
 
+            return string.Join(sep, aNames);
+        }
+
+        public string GetRangs(string sep = ",<br>")
+        {
+            string[] aRangs = new string[Members.Count];
+            for (int i = 0; i < Members.Count; i++)
+            {
+                aRangs[i] = EnumCasters.RangStringRepresent(Members[i].Rang);
+            }
+
+            return string.Join(sep, aRangs);
+        }
+
+        public string GetBirths(string sep = ",<br>")
+        {
+            string[] aValues = new string[Members.Count];
+            for (int i = 0; i < Members.Count; i++)
+            {
+                aValues[i] = Members[i].BirthYear();
+            }
+
+            return string.Join(sep, aValues);
+        }
+
+        public string GetSexs(string sep = ",<br>")
+        {
+            string[] aValues = new string[Members.Count];
+            for (int i = 0; i < Members.Count; i++)
+            {
+                aValues[i] = EnumCasters.SexStringRepresent(Members[i].Sex);
+            }
+
+            return string.Join(sep, aValues);
+        }
+
+        public int GetDistanceRangSum()
+        {
+            int rang = 0;
+
+            foreach (Person p in Members)
+            {
+                rang += (int)p.Rang * 4 / (int)Amount;
+            }
+
+            return rang;
+        }
+
+        public string GetTypeRepresnet()
+        {
+            return EnumCasters.GroupTypeStringRepresent(Type);
+        }
+
+        public string GenGroupNr()
+        {
+            return "unknown";
+        }
     }
 }

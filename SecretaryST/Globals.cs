@@ -28,7 +28,12 @@ namespace SecretaryST
             public const string Finish = "Финишнка";
             public const string Score = "Очки";
 
-            public const string StartProtocol = "Старт.протокол";
+            public const string StartProtocol = "Старт";
+
+            public static readonly List<string> OriginalSheetNames = new List<string>()
+            {
+                Application, Options, Manager, Base, TechApplication, Extraction, Finish, Score, Protocol1, Protocol2, Protocol4
+            };
         }
 
         //_________________________________________________
@@ -101,7 +106,10 @@ namespace SecretaryST
             {
                 { "nr", "№ п/п" },
                 { "name", "Участник" },
+                { "name-coop", "Состав" },
                 { "person-nr", "Номер участника" },
+                { "both-nr", "Связка" },
+                { "group-nr", "Группа" },
                 { "rang", "Разряд" },
                 { "birth", "Год" },
                 { "sex", "Пол" },
