@@ -18,6 +18,11 @@ namespace SecretaryST
             this.range = range;
         }
 
+        public void SetColWidth(double w)
+        {
+            Range.Columns.ColumnWidth = w;
+        }
+
         public void Merge()
         {
             Range.Merge();

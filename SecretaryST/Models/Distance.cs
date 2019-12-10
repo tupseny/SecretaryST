@@ -38,7 +38,7 @@ namespace SecretaryST.Models
                 DistanceGroup group = kvGroup.Value;
 
                 int iRow = 1;
-                foreach (KeyValuePair<string, string> kvHeader in Globals.Strings.StartProtocolHeaders)
+                foreach (KeyValuePair<string, string[]> kvHeader in Globals.Strings.StartProtocolHeaders)
                 {
                     string newKey = kvHeader.Key;
                     string newVal = "";

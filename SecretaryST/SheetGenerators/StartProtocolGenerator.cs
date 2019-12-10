@@ -57,10 +57,19 @@ namespace SecretaryST.SheetGenerators
             List<string> headers = Globals.Options.startProtocolHeaders;
             //Microsoft.Office.Interop.Excel.Range shRange = base.OSheet.Range;
 
+            PageSetup();
+
             GenHead(headers.Count);
             int n = GenBody(headers);
             GenFooter(n);
 
+            void PageSetup()
+            {
+                OSheet.PageSetup.Orientation = ExcelInter.XlPageOrientation.xlLandscape;
+                OSheet.PageSetup.Zoom = false;
+                OSheet.PageSetup.FitToPagesWide = 1;
+                OSheet.PageSetup.FitToPagesTall = 2;
+            }
             void GenHead(int width)
             {
                 //owner organisation
@@ -150,9 +159,21 @@ namespace SecretaryST.SheetGenerators
                         int iCol = 0;
                         foreach (string key in Globals.Options.startProtocolHeaders)
                         {
-                            rn.Offset[RowOffset: iRow, ColumnOffset: iCol].Value = dictRow[key];
+                            DataFormatInsert();
 
                             iCol++;
+
+                            void DataFormatInsert()
+                            {
+                                RangeFormatter fRange = new RangeFormatter(rn.Offset[RowOffset: iRow, ColumnOffset: iCol]);
+                            
+                                fRange.HorizontalCenterAlignment();
+                                fRange.VerticalCenterAlignment();
+                                fRange.TextH3();
+                                fRange.Border(top: true, bot: true, left: true, right: true);
+                                
+                                fRange.Range.Value = dictRow[key];
+                            }
                         }
 
                         iRow++;
@@ -166,14 +187,16 @@ namespace SecretaryST.SheetGenerators
                     int i = 1;
                     foreach (string key in lHeaders)
                     {
-                        HeaderItem(i, Globals.Strings.StartProtocolHeaders[key]);
+                        HeaderItem(i, Globals.Strings.StartProtocolHeaders[key][0], double.Parse(Globals.Strings.StartProtocolHeaders[key][1]));
 
                         i++;
                     }
 
-                    void HeaderItem(int iCol, string val)
+                    void HeaderItem(int iCol, string val, double colWidth)
                     {
                         RangeFormatter fRange = new RangeFormatter(base.OSheet.Range[sTableHeader].Offset[ColumnOffset: iCol - 1]);
+
+                        fRange.SetColWidth(colWidth);
 
                         fRange.Bold(true);
                         fRange.HorizontalCenterAlignment();

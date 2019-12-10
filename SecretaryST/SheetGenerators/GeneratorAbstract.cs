@@ -1,9 +1,6 @@
-﻿using Microsoft.Office.Tools.Excel;
-using ExcelInter = Microsoft.Office.Interop.Excel;
+﻿using SecretaryST.Models;
 using System;
-using SecretaryST.Enums;
-using System.Collections.Generic;
-using SecretaryST.Models;
+using ExcelInter = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST.SheetGenerators
 {
@@ -39,16 +36,36 @@ namespace SecretaryST.SheetGenerators
         protected void AddSheet(string suffix = "")
         {
             Globals.ThisWorkbook.Worksheets.Add(After: Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count]);
-            ExcelInter.Worksheet sh = (ExcelInter.Worksheet) Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count];
+            ExcelInter.Worksheet sh = (ExcelInter.Worksheet)Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count];
 
             if (SheetName is null)
             {
                 throw new InvalidOperationException("Sheet name not initialized");
             }
 
-            sh.Name = SheetName + "_" + suffix;
+            string name = SheetName + "_" + suffix;
 
+            if (SheetExists(name, out ExcelInter.Worksheet sheet))
+            {
+                sheet.Delete();
+            }
+
+            sh.Name = name;
             oSheet = sh;
+        }
+
+        protected bool SheetExists(string sheetName, out ExcelInter.Worksheet sheet)
+        {
+            foreach (ExcelInter.Worksheet item in Globals.ThisWorkbook.Worksheets)
+            {
+                if (item.Name == sheetName)
+                {
+                    sheet = item;
+                    return true;
+                }
+            }
+            sheet = null;
+            return false;
         }
 
         //Abstract Methods

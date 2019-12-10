@@ -93,7 +93,7 @@ namespace SecretaryST
                 ConvertDataToModels();
 
                 //methods finished successfuly
-                AlertBoxes.AlertMsg("ГОТОВО!");
+                //AlertBoxes.AlertMsg("ГОТОВО!");
             }
             catch (GroupFullException e)
             //If group is already full but user wants add new person

@@ -103,23 +103,23 @@ namespace SecretaryST
 
             public const string StartProtocol = "стартовый протокол";
 
-            public static readonly Dictionary<string, string> StartProtocolHeaders = new Dictionary<string, string>()
+            public static readonly Dictionary<string, string[]> StartProtocolHeaders = new Dictionary<string, string[]>()
             {
-                { "nr", "№ п/п" },
-                { "name", "Участник" },
-                { "name-coop", "Состав" },
-                { "person-nr", "Номер участника" },
-                { "both-nr", "Связка" },
-                { "group-nr", "Группа" },
-                { "rang", "Разряд" },
-                { "birth", "Год" },
-                { "sex", "Пол" },
-                { "compeete_name", "Зачет" },
-                { "delegation", "Делегация" },
-                { "region", "Территория" },
-                { "chip-nr", "Номер чипа" },
-                { "distance-rang", "Ранг" },
-                { "start-time", "Время старта" },
+                { "nr", new string[2]{"№ п/п", "3,15"} },
+                { "name", new string[2]{"Участник", "25"} },
+                { "name-coop", new string[2]{"Состав", "25" } },
+                { "person-nr", new string[2]{"Номер участника", "10" } },
+                { "both-nr", new string[2]{"Связка", "10" } },
+                { "group-nr", new string[2]{"Группа", "10" } },
+                { "rang", new string[2]{"Разряд", "7" } },
+                { "birth", new string[2]{"Год", "5" } },
+                { "sex", new string[2]{"Пол", "5" } },
+                { "compeete_name", new string[2]{"Зачет", "14" } },
+                { "delegation", new string[2]{"Делегация", "30" } },
+                { "region", new string[2]{"Территория", "20" } },
+                { "chip-nr", new string[2]{"Номер чипа", "9" } },
+                { "distance-rang",new string[2]{"Ранг", "6" } },
+                { "start-time", new string[2]{"Время старта", "9" } },
             };
 
             public static readonly IFormatProvider dateFormatProvider = System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU");
