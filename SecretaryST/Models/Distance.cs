@@ -31,13 +31,13 @@ namespace SecretaryST.Models
         {
             List<Dictionary<string, string>> lItems = new List<Dictionary<string, string>>();
 
+            int iRow = 1;
             foreach (KeyValuePair<GroupIndexAmountStruct, DistanceGroup> kvGroup in Groups)
             {
                 Dictionary<string, string> dItems = new Dictionary<string, string>();
                 GroupIndexAmountStruct structIndexAmount = kvGroup.Key;
                 DistanceGroup group = kvGroup.Value;
 
-                int iRow = 1;
                 foreach (KeyValuePair<string, string[]> kvHeader in Globals.Strings.StartProtocolHeaders)
                 {
                     string newKey = kvHeader.Key;
@@ -52,6 +52,7 @@ namespace SecretaryST.Models
                         case "name":
                             newVal = group.GetNames();
                             break;
+
                         case "name-coop":
                             newVal = group.GetNames(joinRang: true);
                             break;
@@ -103,10 +104,9 @@ namespace SecretaryST.Models
                     }
 
                     dItems.Add(key: newKey, value: newVal);
-
-                    iRow++;
                 }
                 lItems.Add(dItems);
+                iRow++;
             }
 
             return lItems;

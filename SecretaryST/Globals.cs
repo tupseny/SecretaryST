@@ -68,18 +68,18 @@ namespace SecretaryST
 
             public const string OwnerOrganisation = "Какая-то проводящая организация";
             public const string CompeeteName = "Название соревнований";
-            public static readonly string CompeeteDateStart = new DateTime().ToString(Globals.Strings.dateFormatString, Globals.Strings.dateFormatProvider);
-            public static readonly string CompeeteDateEnd = new DateTime(year: new DateTime().Year, month: new DateTime().Month, day: new DateTime().Day + 3)
+            public static readonly string CompeeteDateStart = DateTime.Now.ToString(Globals.Strings.dateFormatString, Globals.Strings.dateFormatProvider);
+            public static readonly string CompeeteDateEnd = new DateTime(year: DateTime.Now.Year, month: DateTime.Now.Month, day: DateTime.Now.Day + 3)
                 .ToString(Globals.Strings.dateFormatString, Globals.Strings.dateFormatProvider);
             public const string CompeetePlace = "Санкт-Петербург";
 
-            public static readonly DateTime Now = new DateTime();
+            public static readonly DateTime Now = DateTime.Now;
             public static readonly DateTime FirstStartTime = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
             public static readonly DateTime StartInterval = new DateTime(Now.Year, Now.Month, Now.Day, hour: 0, minute: 2, second: 0);
 
             public static readonly List<String> startProtocolHeaders = new List<string>()
             {
-                "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "chip-nr", "distance-rang", "start-time"
+                "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "start-time"
             };
 
             public static bool enableVisualEffects = false;
@@ -123,7 +123,7 @@ namespace SecretaryST
             };
 
             public static readonly IFormatProvider dateFormatProvider = System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU");
-            public const string dateFormatString = "d MMM";
+            public const string dateFormatString = "d MMM yyyy";
         }
     }
 }
