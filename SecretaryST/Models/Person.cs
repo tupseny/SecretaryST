@@ -5,6 +5,7 @@ namespace SecretaryST.Models
 {
     class Person
     {
+        private int _Nr;
         private string _Name;
         private DateTime _Birth;
         private string _Region;
@@ -20,12 +21,15 @@ namespace SecretaryST.Models
             _Delegation = delegation;
             _Rang = rang;
             _Sex = sex;
+
+            _Nr = Globals.Counters.IPerson;
         }
 
         public string Name { get => _Name; set => _Name = value; }
         public DateTime Birth { get => _Birth; set => _Birth = value; }
         public string Region { get => _Region; set => _Region = value; }
         public string Delegation { get => _Delegation; set => _Delegation = value; }
+        public int Nr { get => _Nr; }
         internal Rangs Rang { get => _Rang; set => _Rang = value; }
         internal Sex Sex { get => _Sex; set => _Sex = value; }
 

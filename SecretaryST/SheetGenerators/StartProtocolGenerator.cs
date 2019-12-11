@@ -10,6 +10,7 @@ namespace SecretaryST.SheetGenerators
     {
         //class variables
         private readonly DistanceGroupAmount grAmount;
+        private List<string> lHeaders;
 
         //class consts
         private const string sOwnerOrganisation = "A1";
@@ -30,13 +31,17 @@ namespace SecretaryST.SheetGenerators
         public StartProtocolGenerator(DistanceGroupAmount type)
         {
             this.grAmount = type;
+            this.LHeaders = Globals.Options.startProtocolHeaders1;
 
             string typeRepresent = EnumCasters.GroupAmountStringRepresent(GrAmount);
             SheetName = Globals.SheetNames.StartProtocol + " (" + typeRepresent + ")";
         }
 
+
         //Getters & Setters
         public DistanceGroupAmount GrAmount { get => grAmount; }
+        public List<string> LHeaders { get => lHeaders; set => lHeaders = value; }
+
 
         //Public methods
         public override void Create(Distance distance, string suffix = "")
@@ -57,7 +62,7 @@ namespace SecretaryST.SheetGenerators
         //private methods
         private void BuildStructure(Distance distance)
         {
-            List<string> headers = Globals.Options.startProtocolHeaders;
+            List<string> headers = this.LHeaders;
             //Microsoft.Office.Interop.Excel.Range shRange = base.OSheet.Range;
 
             PageSetup();
@@ -165,10 +170,10 @@ namespace SecretaryST.SheetGenerators
                     int iRow = 0;
                     foreach (Dictionary<string, string> dictRow in lData)
                     {
-                        new RangeFormatter(rn.Offset[RowOffset: iRow]).SetRowHeight(dDataRowHeight);
+                        new RangeFormatter(rn.Offset[RowOffset: iRow]).SetRowHeightAsContent();
 
                         int iCol = 0;
-                        foreach (string key in Globals.Options.startProtocolHeaders)
+                        foreach (string key in this.LHeaders)
                         {
                             DataFormatInsert();
 

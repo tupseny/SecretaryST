@@ -13,6 +13,7 @@ namespace SecretaryST
     {
         private const int iDelegation = 0;
         private const int iRegion = 1;
+        private const int iManager = 2;
         private const int iName = 3;
         private const int iBirth = 4;
         private const int iRang = 5;
@@ -164,21 +165,23 @@ namespace SecretaryST
                     int i2 = Utils.ReadIntValue(row, iGroupDoubleIndex);
                     int i4 = Utils.ReadIntValue(row, iGroupFourIndex);
 
+                    string manager = Utils.ReadStringValue(row, iManager);
+
                     DistanceLevels level = EnumCasters.NumberToDistanceLevelType(Utils.ReadIntValue(row, iDistanceLevel));
 
                     if (b1)
                     {
-                        linkPersonWithDistances(person, new GroupIndexAmountStruct(-1, DistanceGroupAmount.One), level);
+                        linkPersonWithDistances(person, new GroupIndexAmountStruct(-1, DistanceGroupAmount.One), level, manager);
                     }
 
                     if (i2 != 0)
                     {
-                        linkPersonWithDistances(person, new GroupIndexAmountStruct(i2, DistanceGroupAmount.Two), level);
+                        linkPersonWithDistances(person, new GroupIndexAmountStruct(i2, DistanceGroupAmount.Two), level, manager);
                     }
 
                     if (i4 != 0)
                     {
-                        linkPersonWithDistances(person, new GroupIndexAmountStruct(i4, DistanceGroupAmount.Four), level);
+                        linkPersonWithDistances(person, new GroupIndexAmountStruct(i4, DistanceGroupAmount.Four), level, manager);
                     }
 
                 }
@@ -196,7 +199,7 @@ namespace SecretaryST
             checkIfEachGroupIsFull();
 
             //add persons in groups and then to distance entity
-            void linkPersonWithDistances(Person prsn, GroupIndexAmountStruct groupIndexAmountData, DistanceLevels level)
+            void linkPersonWithDistances(Person prsn, GroupIndexAmountStruct groupIndexAmountData, DistanceLevels level, string manager)
             {
                 try
                 {
@@ -238,7 +241,11 @@ namespace SecretaryST
 
                     void newGroup()
                     {
-                        DistanceGroup grp = new DistanceGroup(amount: groupIndexAmountData.Amnt);
+                        DistanceGroup grp = new DistanceGroup(amount: groupIndexAmountData.Amnt)
+                        {
+                            Manager = manager
+                        };
+
                         grp.AddMember(prsn);
                         dist.AddGroup(groupIndexAmount: groupIndexAmountData, grp: grp);
                     }

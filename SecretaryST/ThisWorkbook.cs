@@ -29,11 +29,8 @@ namespace SecretaryST
         }
 
         #endregion
-
-        public static void StartProtocol1Generate()
+        private static void StartProtocolGenerate(DistanceGroupAmount amnt, List<string> lHeaders = null)
         {
-            DistanceGroupAmount amnt = DistanceGroupAmount.One;
-
             //all distances
             List<Distance> lDistances = База.DbList;
 
@@ -68,10 +65,40 @@ namespace SecretaryST
                         string nameSuffix = kvPair.Key.ToString() + "_" + EnumCasters.GroupTypeStringRepresent(type);
 
                         StartProtocolGenerator generator = new StartProtocolGenerator(amnt);
+
+                        if (lHeaders != null)
+                        {
+                            generator.LHeaders = lHeaders;
+                        }
+
                         generator.Create(distance, suffix: nameSuffix);
                     }
                 }
             }
+        }
+
+        public static void StartProtocol1Generate()
+        {
+            DistanceGroupAmount amount = DistanceGroupAmount.One;
+            List<string> headers = Globals.Options.startProtocolHeaders1;
+
+            StartProtocolGenerate(amount, headers);
+        }
+
+        public static void StartProtocol2Generate()
+        {
+            DistanceGroupAmount amount = DistanceGroupAmount.Two;
+            List<string> headers = Globals.Options.startProtocolHeaders2;
+
+            StartProtocolGenerate(amount, headers);
+        }
+
+        public static void StartProtocol4Generate()
+        {
+            DistanceGroupAmount amount = DistanceGroupAmount.Four;
+            List<string> headers = Globals.Options.startProtocolHeaders4;
+
+            StartProtocolGenerate(amount, headers);
         }
 
         public static void RemoveOtherSheets()

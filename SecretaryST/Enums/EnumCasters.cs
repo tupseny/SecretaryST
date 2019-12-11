@@ -154,7 +154,7 @@ namespace SecretaryST.Enums
             switch (val)
             {
                 case DistanceGroupType.Both:
-                    return "М/Ж";
+                    return "МЖ";
                 case DistanceGroupType.Female:
                     return "Ж";
                 case DistanceGroupType.Male:

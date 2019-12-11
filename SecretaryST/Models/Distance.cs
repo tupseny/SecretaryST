@@ -83,6 +83,10 @@ namespace SecretaryST.Models
                             newVal = group.Delegation;
                             break;
 
+                        case "delegation-manager":
+                            newVal = group.Manager;
+                            break;
+
                         case "region":
                             newVal = group.Region;
                             break;
@@ -98,6 +102,7 @@ namespace SecretaryST.Models
                         case "start-time":
                             newVal = "unknown";
                             break;
+
 
                         default:
                             throw new ArgumentException("unknown header key");

@@ -17,6 +17,9 @@ namespace SecretaryST
             };
 
             this.startProt1.Click += (s, ev) => ThisWorkbook.StartProtocol1Generate();
+            this.startProt2.Click += (s, ev) => ThisWorkbook.StartProtocol2Generate();
+            this.startProt4.Click += (s, ev) => ThisWorkbook.StartProtocol4Generate();
+
             this.removeOtherSheets.Click += (s, ev) => ThisWorkbook.RemoveOtherSheets();
 
             this.visualEffectsToggle.Click += (s, ev) => EnableVisualEffects(this.visualEffectsToggle.Checked);

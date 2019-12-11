@@ -18,6 +18,11 @@ namespace SecretaryST
             this.range = range;
         }
 
+        public void SetRowHeightAsContent()
+        {
+            Range.Rows.AutoFit();
+        }
+
         public void SetRowHeight(double h)
         {
             Range.Rows.RowHeight = h;

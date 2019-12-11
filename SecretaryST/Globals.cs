@@ -6,6 +6,49 @@ namespace SecretaryST
 {
     internal sealed partial class Globals
     {
+        //_______________________________________________
+        //            |                     |
+        //   >--------|       COUNTERS      |--------<
+        //____________|_____________________|____________
+#pragma warning disable CA1034 // Вложенные типы не должны быть видимыми
+        public static class Counters
+#pragma warning restore CA1034 // Вложенные типы не должны быть видимыми
+        {
+            private static int iGroup2 = 1;
+            private static int iGroup4 = 1;
+            private static int iPerson = 1;
+
+            public static int IGroup2
+            {
+                get
+                {
+                    int result = iGroup2;
+                    iGroup2++;
+                    return result;
+                }
+                set => iGroup2 = value;
+            }
+            public static int IGroup4
+            {
+                get
+                {
+                    int result = iGroup4;
+                    iGroup4++;
+                    return result;
+                }
+                set => iGroup4 = value;
+            }
+            public static int IPerson
+            {
+                get
+                {
+                    int result = iPerson;
+                    iPerson++;
+                    return result;
+                }
+                set => iPerson = value;
+            }
+        }
 
 
         //_______________________________________________
@@ -63,8 +106,16 @@ namespace SecretaryST
         //____________|_______________________|____________
         public static class Options
         {
-            public const bool IsRandomStartOrder = true;
-            public const bool ComputePersonNr = true;
+            public const bool SeperateNumerationInsideGroups2 = true;
+            public const bool SeperateNumerationInsideGroups4 = true;
+
+            public const bool IsRandomStartOrder1 = true;
+            public const bool IsRandomStartOrder2 = true;
+            public const bool IsRandomStartOrder4 = true;
+
+            public const bool ComputePersonNrFor1 = true;
+            public const bool ComputePersonNrFor2 = true;
+            public const bool ComputePersonNrFor4 = true;
 
             public const string OwnerOrganisation = "Какая-то проводящая организация";
             public const string CompeeteName = "Название соревнований";
@@ -77,9 +128,19 @@ namespace SecretaryST
             public static readonly DateTime FirstStartTime = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
             public static readonly DateTime StartInterval = new DateTime(Now.Year, Now.Month, Now.Day, hour: 0, minute: 2, second: 0);
 
-            public static readonly List<String> startProtocolHeaders = new List<string>()
+            public static readonly List<String> startProtocolHeaders1 = new List<string>()
             {
                 "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "start-time"
+            };
+
+            public static readonly List<String> startProtocolHeaders2 = new List<string>()
+            {
+                "nr", "both-nr", "name-coop", "delegation", "region", "compeete_name",  "start-time"
+            };
+
+            public static readonly List<String> startProtocolHeaders4 = new List<string>()
+            {
+                "nr", "name-coop", "both-nr", "region", "delegation-manager", "compeete_name",  "start-time"
             };
 
             public static bool enableVisualEffects = false;
@@ -116,6 +177,7 @@ namespace SecretaryST
                 { "sex", new string[2]{"Пол", "5" } },
                 { "compeete_name", new string[2]{"Зачет", "14" } },
                 { "delegation", new string[2]{"Делегация", "30" } },
+                { "delegation-manager", new string[2]{"Представитель", "20" } },
                 { "region", new string[2]{"Территория", "20" } },
                 { "chip-nr", new string[2]{"Номер чипа", "9" } },
                 { "distance-rang",new string[2]{"Ранг", "6" } },
