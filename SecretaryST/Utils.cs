@@ -177,8 +177,6 @@ namespace SecretaryST
 
             return res;
         }
-
-        
     }
 }
 ;

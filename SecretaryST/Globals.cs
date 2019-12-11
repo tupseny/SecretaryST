@@ -125,8 +125,13 @@ namespace SecretaryST
             public const string CompeetePlace = "Санкт-Петербург";
 
             public static readonly DateTime Now = DateTime.Now;
-            public static readonly DateTime FirstStartTime = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
-            public static readonly DateTime StartInterval = new DateTime(Now.Year, Now.Month, Now.Day, hour: 0, minute: 2, second: 0);
+            public static readonly DateTime FirstStartTime1 = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
+            public static readonly DateTime FirstStartTime2 = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
+            public static readonly DateTime FirstStartTime4 = new DateTime(Now.Year, Now.Month, Now.Day, hour: 10, minute: 0, second: 0);
+
+            public static readonly TimeSpan StartInterval1 = new TimeSpan(hours: 0, minutes: 2, seconds: 0);
+            public static readonly TimeSpan StartInterval2 = new TimeSpan(hours: 0, minutes: 4, seconds: 0);
+            public static readonly TimeSpan StartInterval4 = new TimeSpan(hours: 0, minutes: 20, seconds: 0);
 
             public static readonly List<String> startProtocolHeaders1 = new List<string>()
             {

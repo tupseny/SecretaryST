@@ -29,7 +29,7 @@ namespace SecretaryST
         }
 
         #endregion
-        private static void StartProtocolGenerate(DistanceGroupAmount amnt, List<string> lHeaders = null)
+        private static void StartProtocolGenerate(DistanceGroupAmount amnt, StartTimer timer, List<string> lHeaders = null)
         {
             //all distances
             List<Distance> lDistances = База.DbList;
@@ -64,7 +64,7 @@ namespace SecretaryST
                     {
                         string nameSuffix = kvPair.Key.ToString() + "_" + EnumCasters.GroupTypeStringRepresent(type);
 
-                        StartProtocolGenerator generator = new StartProtocolGenerator(amnt);
+                        StartProtocolGenerator generator = new StartProtocolGenerator(amnt, timer);
 
                         if (lHeaders != null)
                         {
@@ -72,8 +72,12 @@ namespace SecretaryST
                         }
 
                         generator.Create(distance, suffix: nameSuffix);
+
+                        timer.Reset();
                     }
                 }
+
+                
             }
         }
 
@@ -81,24 +85,27 @@ namespace SecretaryST
         {
             DistanceGroupAmount amount = DistanceGroupAmount.One;
             List<string> headers = Globals.Options.startProtocolHeaders1;
+            StartTimer timer = new StartTimer(Globals.Options.FirstStartTime1, Globals.Options.StartInterval1);
 
-            StartProtocolGenerate(amount, headers);
+            StartProtocolGenerate(amount, timer, headers);
         }
 
         public static void StartProtocol2Generate()
         {
             DistanceGroupAmount amount = DistanceGroupAmount.Two;
             List<string> headers = Globals.Options.startProtocolHeaders2;
+            StartTimer timer = new StartTimer(Globals.Options.FirstStartTime2, Globals.Options.StartInterval2);
 
-            StartProtocolGenerate(amount, headers);
+            StartProtocolGenerate(amount, timer, headers);
         }
 
         public static void StartProtocol4Generate()
         {
             DistanceGroupAmount amount = DistanceGroupAmount.Four;
             List<string> headers = Globals.Options.startProtocolHeaders4;
+            StartTimer timer = new StartTimer(Globals.Options.FirstStartTime4, Globals.Options.StartInterval4);
 
-            StartProtocolGenerate(amount, headers);
+            StartProtocolGenerate(amount, timer, headers);
         }
 
         public static void RemoveOtherSheets()

@@ -11,6 +11,7 @@ namespace SecretaryST.SheetGenerators
         //class variables
         private readonly DistanceGroupAmount grAmount;
         private List<string> lHeaders;
+        private StartTimer timer;
 
         //class consts
         private const string sOwnerOrganisation = "A1";
@@ -28,10 +29,11 @@ namespace SecretaryST.SheetGenerators
         private const double dDataRowHeight = 12;
 
         //constructors
-        public StartProtocolGenerator(DistanceGroupAmount type)
+        public StartProtocolGenerator(DistanceGroupAmount type, StartTimer timer)
         {
             this.grAmount = type;
             this.LHeaders = Globals.Options.startProtocolHeaders1;
+            this.timer = timer;
 
             string typeRepresent = EnumCasters.GroupAmountStringRepresent(GrAmount);
             SheetName = Globals.SheetNames.StartProtocol + " (" + typeRepresent + ")";
@@ -164,7 +166,7 @@ namespace SecretaryST.SheetGenerators
                 {
                     int nInserted = 0;
 
-                    List<Dictionary<string, string>> lData = data.GetStringRepresentList();
+                    List<Dictionary<string, string>> lData = data.GetStringRepresentList(timer);
                     ExcelInter.Range rn = OSheet.Range[sTableDataFirst];
 
                     int iRow = 0;

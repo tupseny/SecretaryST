@@ -27,7 +27,7 @@ namespace SecretaryST.Models
 
             this.Groups.Add(key: groupIndexAmount, value: grp);
         }
-        internal List<Dictionary<string, string>> GetStringRepresentList()
+        internal List<Dictionary<string, string>> GetStringRepresentList(StartTimer timer)
         {
             List<Dictionary<string, string>> lItems = new List<Dictionary<string, string>>();
 
@@ -100,7 +100,7 @@ namespace SecretaryST.Models
                             break;
 
                         case "start-time":
-                            newVal = "unknown";
+                            newVal = timer.NextString();
                             break;
 
 

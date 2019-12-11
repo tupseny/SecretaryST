@@ -35,7 +35,12 @@ namespace SecretaryST.SheetGenerators
 
         protected void AddSheet(string suffix = "")
         {
+            ExcelInter._Worksheet activeSheet = (ExcelInter._Worksheet) Globals.ThisWorkbook.ActiveSheet;
+
             Globals.ThisWorkbook.Worksheets.Add(After: Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count]);
+
+            activeSheet.Activate();
+
             ExcelInter.Worksheet sh = (ExcelInter.Worksheet)Globals.ThisWorkbook.Worksheets[Globals.ThisWorkbook.Worksheets.Count];
 
             if (SheetName is null)
