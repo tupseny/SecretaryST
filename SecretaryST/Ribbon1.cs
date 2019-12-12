@@ -16,17 +16,21 @@ namespace SecretaryST
                 }
             };
 
+            //start protocol management
             this.startProt1.Click += (s, ev) => ThisWorkbook.StartProtocol1Generate();
             this.startProt2.Click += (s, ev) => ThisWorkbook.StartProtocol2Generate();
             this.startProt4.Click += (s, ev) => ThisWorkbook.StartProtocol4Generate();
 
-            this.removeOtherSheets.Click += (s, ev) => ThisWorkbook.RemoveOtherSheets();
-
-            this.visualEffectsToggle.Click += (s, ev) => EnableVisualEffects(this.visualEffectsToggle.Checked);
-
             StartProtSetEnabled(false);
             this.numOfPersons.Label = "База пустая!";
             this.numOfPersons.ScreenTip = "Кол-во значений в базе";
+
+            //main management
+            this.removeOtherSheets.Click += (s, ev) => ThisWorkbook.RemoveOtherSheets();
+            this.visualEffectsToggle.Click += (s, ev) => EnableVisualEffects(this.visualEffectsToggle.Checked);
+            this.butOptions.Click += (s, ev) => new Forms.StartProtocolOptions().ShowDialog();
+
+
         }
 
         private void StartProtSetEnabled(bool visible)

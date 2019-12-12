@@ -13,7 +13,7 @@ namespace SecretaryST {
     
     
     /// 
-    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(1)]
+    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(2)]
     [global::System.Security.Permissions.PermissionSetAttribute(global::System.Security.Permissions.SecurityAction.Demand, Name="FullTrust")]
     public sealed partial class База : Microsoft.Office.Tools.Excel.WorksheetBase {
         

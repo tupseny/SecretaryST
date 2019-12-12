@@ -37,20 +37,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecretaryRibbon));
             this.secretary_tab = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.removeOtherSheets = this.Factory.CreateRibbonButton();
+            this.visualEffectsToggle = this.Factory.CreateRibbonToggleButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.box1 = this.Factory.CreateRibbonBox();
             this.box3 = this.Factory.CreateRibbonBox();
+            this.importBut = this.Factory.CreateRibbonButton();
             this.box2 = this.Factory.CreateRibbonBox();
             this.box4 = this.Factory.CreateRibbonBox();
             this.numOfPersons = this.Factory.CreateRibbonLabel();
             this.group3 = this.Factory.CreateRibbonGroup();
             this.startBox = this.Factory.CreateRibbonBox();
-            this.removeOtherSheets = this.Factory.CreateRibbonButton();
-            this.visualEffectsToggle = this.Factory.CreateRibbonToggleButton();
-            this.importBut = this.Factory.CreateRibbonButton();
             this.startProt1 = this.Factory.CreateRibbonButton();
             this.startProt2 = this.Factory.CreateRibbonButton();
             this.startProt4 = this.Factory.CreateRibbonButton();
+            this.butOptions = this.Factory.CreateRibbonButton();
             this.secretary_tab.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -74,8 +75,23 @@
             // 
             this.group1.Items.Add(this.removeOtherSheets);
             this.group1.Items.Add(this.visualEffectsToggle);
+            this.group1.Items.Add(this.butOptions);
             resources.ApplyResources(this.group1, "group1");
             this.group1.Name = "group1";
+            // 
+            // removeOtherSheets
+            // 
+            this.removeOtherSheets.Image = global::SecretaryST.Properties.Resources.delete_small;
+            resources.ApplyResources(this.removeOtherSheets, "removeOtherSheets");
+            this.removeOtherSheets.Name = "removeOtherSheets";
+            this.removeOtherSheets.ShowImage = true;
+            // 
+            // visualEffectsToggle
+            // 
+            this.visualEffectsToggle.Image = global::SecretaryST.Properties.Resources.Fx_small;
+            resources.ApplyResources(this.visualEffectsToggle, "visualEffectsToggle");
+            this.visualEffectsToggle.Name = "visualEffectsToggle";
+            this.visualEffectsToggle.ShowImage = true;
             // 
             // group2
             // 
@@ -95,6 +111,13 @@
             // 
             this.box3.Items.Add(this.importBut);
             this.box3.Name = "box3";
+            // 
+            // importBut
+            // 
+            resources.ApplyResources(this.importBut, "importBut");
+            this.importBut.Image = global::SecretaryST.Properties.Resources.importImage_small;
+            this.importBut.Name = "importBut";
+            this.importBut.ShowImage = true;
             // 
             // box2
             // 
@@ -124,27 +147,6 @@
             this.startBox.Items.Add(this.startProt4);
             this.startBox.Name = "startBox";
             // 
-            // removeOtherSheets
-            // 
-            this.removeOtherSheets.Image = global::SecretaryST.Properties.Resources.delete_small;
-            resources.ApplyResources(this.removeOtherSheets, "removeOtherSheets");
-            this.removeOtherSheets.Name = "removeOtherSheets";
-            this.removeOtherSheets.ShowImage = true;
-            // 
-            // visualEffectsToggle
-            // 
-            this.visualEffectsToggle.Image = global::SecretaryST.Properties.Resources.Fx_small;
-            resources.ApplyResources(this.visualEffectsToggle, "visualEffectsToggle");
-            this.visualEffectsToggle.Name = "visualEffectsToggle";
-            this.visualEffectsToggle.ShowImage = true;
-            // 
-            // importBut
-            // 
-            resources.ApplyResources(this.importBut, "importBut");
-            this.importBut.Image = global::SecretaryST.Properties.Resources.importImage_small;
-            this.importBut.Name = "importBut";
-            this.importBut.ShowImage = true;
-            // 
             // startProt1
             // 
             this.startProt1.Image = global::SecretaryST.Properties.Resources.person1_small;
@@ -165,6 +167,13 @@
             resources.ApplyResources(this.startProt4, "startProt4");
             this.startProt4.Name = "startProt4";
             this.startProt4.ShowImage = true;
+            // 
+            // butOptions
+            // 
+            this.butOptions.Image = global::SecretaryST.Properties.Resources.options;
+            resources.ApplyResources(this.butOptions, "butOptions");
+            this.butOptions.Name = "butOptions";
+            this.butOptions.ShowImage = true;
             // 
             // SecretaryRibbon
             // 
@@ -210,6 +219,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box2;
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box4;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton visualEffectsToggle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton butOptions;
     }
 
     partial class ThisRibbonCollection

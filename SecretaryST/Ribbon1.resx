@@ -150,6 +150,21 @@
   <data name="&gt;&gt;visualEffectsToggle.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="butOptions.Label" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="&gt;&gt;butOptions.Name" xml:space="preserve">
+    <value>butOptions</value>
+  </data>
+  <data name="&gt;&gt;butOptions.Type" xml:space="preserve">
+    <value>Microsoft.VisualStudio.Tools.Office.Ribbon.View.ButtonView, Microsoft.VisualStudio.Tools.Office.Designer, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;butOptions.Parent" xml:space="preserve">
+    <value>group1</value>
+  </data>
+  <data name="&gt;&gt;butOptions.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="group1.Label" xml:space="preserve">
     <value>Управление</value>
   </data>

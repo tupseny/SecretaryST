@@ -13,9 +13,17 @@ namespace SecretaryST {
     
     
     /// 
-    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(3)]
+    [Microsoft.VisualStudio.Tools.Applications.Runtime.StartupObjectAttribute(1)]
     [global::System.Security.Permissions.PermissionSetAttribute(global::System.Security.Permissions.SecurityAction.Demand, Name="FullTrust")]
-    public sealed partial class Заявка : Microsoft.Office.Tools.Excel.WorksheetBase {
+    public sealed partial class OptionsSheet : Microsoft.Office.Tools.Excel.WorksheetBase {
+        
+        internal Microsoft.Office.Tools.Excel.NamedRange startProtHeaders1;
+        
+        internal Microsoft.Office.Tools.Excel.NamedRange startProtHeaders2;
+        
+        internal Microsoft.Office.Tools.Excel.NamedRange startProtHeaders4;
+        
+        internal Microsoft.Office.Tools.Excel.NamedRange startProtAllHeaders;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
         private global::System.Object missing = global::System.Type.Missing;
@@ -23,8 +31,8 @@ namespace SecretaryST {
         /// 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Заявка(global::Microsoft.Office.Tools.Excel.Factory factory, global::System.IServiceProvider serviceProvider) : 
-                base(factory, serviceProvider, "Лист1", "Лист1") {
+        public OptionsSheet(global::Microsoft.Office.Tools.Excel.Factory factory, global::System.IServiceProvider serviceProvider) : 
+                base(factory, serviceProvider, "Лист2", "Лист2") {
         }
         
         /// 
@@ -33,7 +41,7 @@ namespace SecretaryST {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         protected override void Initialize() {
             base.Initialize();
-            Globals.Заявка = this;
+            Globals.OptionsSheet = this;
             global::System.Windows.Forms.Application.EnableVisualStyles();
             this.InitializeCachedData();
             this.InitializeControls();
@@ -114,6 +122,10 @@ namespace SecretaryST {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         private void BeginInitialization() {
             this.BeginInit();
+            this.startProtHeaders1.BeginInit();
+            this.startProtHeaders2.BeginInit();
+            this.startProtHeaders4.BeginInit();
+            this.startProtAllHeaders.BeginInit();
         }
         
         /// 
@@ -121,6 +133,10 @@ namespace SecretaryST {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         private void EndInitialization() {
+            this.startProtAllHeaders.EndInit();
+            this.startProtHeaders4.EndInit();
+            this.startProtHeaders2.EndInit();
+            this.startProtHeaders1.EndInit();
             this.EndInit();
         }
         
@@ -129,6 +145,10 @@ namespace SecretaryST {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         private void InitializeControls() {
+            this.startProtHeaders1 = Globals.Factory.CreateNamedRange(null, null, "startProtHeaders1", "startProtHeaders1", this);
+            this.startProtHeaders2 = Globals.Factory.CreateNamedRange(null, null, "startProtHeaders2", "startProtHeaders2", this);
+            this.startProtHeaders4 = Globals.Factory.CreateNamedRange(null, null, "startProtHeaders4", "startProtHeaders4", this);
+            this.startProtAllHeaders = Globals.Factory.CreateNamedRange(null, null, "startProtAllHeaders", "startProtAllHeaders", this);
         }
         
         /// 
@@ -136,6 +156,25 @@ namespace SecretaryST {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         private void InitializeComponents() {
+            // 
+            // startProtHeaders1
+            // 
+            this.startProtHeaders1.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
+            // 
+            // startProtHeaders2
+            // 
+            this.startProtHeaders2.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
+            // 
+            // startProtHeaders4
+            // 
+            this.startProtHeaders4.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
+            // 
+            // startProtAllHeaders
+            // 
+            this.startProtAllHeaders.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
+            // 
+            // Лист2
+            // 
         }
         
         /// 
@@ -144,19 +183,31 @@ namespace SecretaryST {
         private bool NeedsFill(string MemberName) {
             return this.DataHost.NeedsFill(this, MemberName);
         }
+        
+        /// 
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        protected override void OnShutdown() {
+            this.startProtAllHeaders.Dispose();
+            this.startProtHeaders4.Dispose();
+            this.startProtHeaders2.Dispose();
+            this.startProtHeaders1.Dispose();
+            base.OnShutdown();
+        }
     }
     
     internal sealed partial class Globals {
         
-        private static Заявка _Заявка;
+        private static OptionsSheet _OptionsSheet;
         
-        internal static Заявка Заявка {
+        internal static OptionsSheet OptionsSheet {
             get {
-                return _Заявка;
+                return _OptionsSheet;
             }
             set {
-                if ((_Заявка == null)) {
-                    _Заявка = value;
+                if ((_OptionsSheet == null)) {
+                    _OptionsSheet = value;
                 }
                 else {
                     throw new System.NotSupportedException();
