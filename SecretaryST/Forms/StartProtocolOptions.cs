@@ -23,6 +23,7 @@ namespace SecretaryST.Forms
             CheckedItemCollection checkedItems = HeadersCheckedList.CheckedItems;
 
             Settings.StartProtOptions.StartProtGroup1.Headers = saveStartProtHeaders(checkedItems, Settings.StartProtOptions.StartProtMain);
+            //todo: add other header tabs
 
             List<Header> saveStartProtHeaders(CheckedItemCollection checkedItemCollection, StartProt startProt)
             {
