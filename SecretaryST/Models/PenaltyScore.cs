@@ -15,6 +15,11 @@ namespace SecretaryST.Models
 
         public PenaltyScore(double score=0, bool failed=false)
         {
+            if (failed && score > 0)
+            {
+                throw new System.ArgumentException("Choose only one whether score or failed status");
+            }
+
             this.score = score;
             this.failed = new FailedState(failed);
         }

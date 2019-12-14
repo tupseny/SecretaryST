@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SecretaryST.Models
 {
@@ -10,7 +11,7 @@ namespace SecretaryST.Models
 
         private DateTime start;
         private DateTime finish;
-        private TimeSpan pause;
+        private PauseCollection pauses;
 
         public DistanceTime(DateTime start)
         {
@@ -19,7 +20,7 @@ namespace SecretaryST.Models
 
         public DateTime Start { get => start; set => start = value; }
         public DateTime Finish { get => finish; set => finish = value; }
-        public TimeSpan Pause { get => pause; set => pause = value; }
+        public PauseCollection Pauses { get => pauses; }
 
         public DateTime GetResultTime(bool usePause = true)
         {
@@ -27,9 +28,9 @@ namespace SecretaryST.Models
             return DateTime.Now;
         }
 
-        public void addPause(TimeSpan val)
+        public void addPause(string key, TimeSpan val)
         {
-            pause.Add(val);
+            pauses[key] = val;
         }
 
         public override string ToString()
@@ -39,9 +40,48 @@ namespace SecretaryST.Models
             return result.ToString(StringRepresentationFormat);
         }
 
-        internal class PauseCounter
+        internal class PauseCollection
         {
-            private Dictionary<> cPause;
+            private Dictionary<string, TimeSpan> dPause;
+
+            public PauseCollection(List<string> keys)
+            {
+                this.dPause = new Dictionary<string, TimeSpan>();
+
+                keys.ForEach(k => dPause.Add(key: k, value: TimeSpan.Zero));
+            }
+
+            public PauseCollection()
+            {
+
+            }
+
+            internal TimeSpan this[string key]
+            {
+                get { return dPause[key]; }
+
+                set
+                {
+                    if (dPause.ContainsKey(key))
+                    {
+                        dPause[key] = value;
+                    }
+                    else
+                    {
+                        dPause.Add(key, value);
+                    }
+                }
+            }
+
+            internal TimeSpan Sum()
+            {
+                TimeSpan accum = TimeSpan.Zero;
+                foreach (TimeSpan item in dPause.Values)
+                {
+                    accum.Add(item);
+                }
+                return accum;
+            }
         }
     }
 }

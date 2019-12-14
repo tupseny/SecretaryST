@@ -49,7 +49,7 @@ namespace SecretaryST.Models
 
         internal void Add(bool failed)
         {
-            this.Add(new PenaltyScore(failed = Failed))
+            this.Add(new PenaltyScore(failed: failed));
         }
     }
 }

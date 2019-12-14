@@ -9,8 +9,7 @@ namespace SecretaryST.Models
     class DistanceStage
     {
         private string name;
-        private DistancePenaltyScore penlties;
-
+        private DistancePenaltyScore penalties;
 
     }
 }
