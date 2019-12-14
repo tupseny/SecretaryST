@@ -1,12 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using Microsoft.Office.Interop.Excel;
 using SecretaryST.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace SecretaryST
 {
     class Utils
     {
+        public static int writeValue(object[] aData, Range range)
+        {
+            //if range is null
+            if (range is null)
+            {
+                throw new ArgumentNullException(nameof(range));
+            }
+
+            int addedRows = 0;
+
+            int rows = aData.GetUpperBound(0) - aData.GetLowerBound(0) + 1;
+
+            //if no cells to be added
+            if (rows == 0)
+            {
+                return addedRows;
+            }
+
+            object[,] tmpArray = new object[rows, 1];
+
+            for (int row = 0; row < rows; row++)
+            {
+                tmpArray[row, 0] = aData[row];
+                addedRows++;
+            }
+
+            range.Value2 = tmpArray;
+
+            return addedRows;
+        }
+
+        //public static int writeValue(object[] aData, Range range)
+        //{
+        //    object[][] tmpArray = new object[aData.GetUpperBound(0) - aData.GetLowerBound(0) + 1][];
+
+        //    int i = 0;
+        //    foreach (object[] item in tmpArray)
+        //    {
+        //        item = new object[] { aData[i] };
+        //        i++;
+        //    }
+
+        //    return writeValue(tmpArray, range);
+        //}
+
         public static List<List<object>> GetValues(Microsoft.Office.Interop.Excel.Range range)
         {
             object dataVal = range.Value;
@@ -100,7 +145,7 @@ namespace SecretaryST
                         throw new InvalidFieldTypeException("BOOL", obj, iCol: i);
                 }
             }
-            else if(obj is bool)
+            else if (obj is bool)
             {
                 res = (bool)obj;
             }
@@ -135,7 +180,8 @@ namespace SecretaryST
                     {
                         throw new InvalidFieldTypeException("YEAR", obj, iCol: i);
                     }
-                } catch (ArgumentException)
+                }
+                catch (ArgumentException)
                 {
                     throw new InvalidFieldTypeException("DATE", obj, iCol: i);
                 }

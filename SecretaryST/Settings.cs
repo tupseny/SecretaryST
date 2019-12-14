@@ -6,10 +6,29 @@ namespace SecretaryST
     {
         public static class StartProtOptions
         {
-            private readonly static StartProt startProtGroup1 = new StartProt();
-            private readonly static StartProt startProtGroup2 = new StartProt();
-            private readonly static StartProt startProtGroup4 = new StartProt();
-            private readonly static StartProt startProtMain = new StartProt();
+            private static List<Header> allHeaders = new List<Header>();
+
+            private readonly static StartProt startProtGroup1 = new StartProt()
+            {
+                Headers = new List<string>()
+                {
+                    "nr", "name", "person-nr", "rang", "birth", "sex", "compeete_name", "delegation", "region", "start-time"
+                }
+            };
+            private readonly static StartProt startProtGroup2 = new StartProt()
+            {
+                Headers = new List<string>()
+                {
+                    "nr", "both-nr", "name-coop", "delegation", "region", "compeete_name",  "start-time"
+                }
+            };
+            private readonly static StartProt startProtGroup4 = new StartProt()
+            {
+                Headers = new List<string>()
+                {
+                    "nr", "name-coop", "both-nr", "region", "delegation-manager", "compeete_name",  "start-time"
+                }
+            };
 
             public static StartProt StartProtGroup1 => startProtGroup1;
 
@@ -17,18 +36,38 @@ namespace SecretaryST
 
             public static StartProt StartProtGroup4 => startProtGroup4;
 
-            public static StartProt StartProtMain => startProtMain;
+            public static List<Header> AllHeaders { get => allHeaders; set => allHeaders = value; }
+
+            public static bool TryGetHeader(string name, out Header dest, bool useReadableName = true)
+            {
+                foreach (Header h in AllHeaders)
+                {
+                    string toCompare = useReadableName ? h.ReadableName : h.ShortName;
+
+                    if (toCompare.Equals(name))
+                    {
+                        dest = h;
+                        return true;
+                    }
+                }
+
+                dest = null;
+                return false;
+            }
 
             public class StartProt
             {
-                private List<Header> headers;
+                private List<string> headers;
+                private List<string> choosedHeaders;
                 private bool enableRandomOrder;
                 private bool enableNrGeneration;
                 private bool useDelegationNr;
 
                 public StartProt()
                 {
-                    Headers = new List<Header>();
+                    ChoosedHeaders = new List<string>();
+                    Headers = new List<string>();
+
                     this.EnableRandomOrder = false;
                     this.EnableNrGeneration = false;
                     this.UseDelegationNr = false;
@@ -37,44 +76,79 @@ namespace SecretaryST
                 public bool EnableRandomOrder { get => enableRandomOrder; set => enableRandomOrder = value; }
                 public bool EnableNrGeneration { get => enableNrGeneration; set => enableNrGeneration = value; }
                 public bool UseDelegationNr { get => useDelegationNr; set => useDelegationNr = value; }
-                public List<Header> Headers { get => headers; set => headers = value; }
-                public bool TryGetHeader(string name, out Header dest, bool useShortName = true)
+                public List<string> ChoosedHeaders { get => choosedHeaders; set => choosedHeaders = value; }
+                public List<string> Headers { get => headers; set => headers = value; }
+                public string[] HeaderShortNameArray()
                 {
-                    foreach (Header h in Headers)
-                    {
-                        string toCompare = useShortName ? h.ShortName : h.ReadableName;
+                    string[] data = new string[this.Headers.Count];
+                    this.Headers.CopyTo(data);
+                    return data;
+                }
+                public string[] ReadableHeadersArray()
+                {
+                    string[] data = new string[this.headers.Count];
 
-                        if (toCompare.Equals(name))
+                    List<string> tmp = new List<string>();
+                    foreach (Header item in AllHeaders)
+                    {
+                        if (this.headers.Contains(item.ShortName))
                         {
-                            dest = h;
-                            return true;
+                            tmp.Add(item.ReadableName);
                         }
                     }
 
-                    dest = null;
-                    return false;
+                    tmp.CopyTo(data);
+                    return data;
                 }
-
-                public class Header
+                public string[] ReadableChoosedHeadersArray()
                 {
-                    private string shortName;
-                    private string fullName;
-                    private string readableName;
-                    private double colWidth;
+                    string[] data = new string[this.headers.Count];
 
-                    public Header(string shortName, string fullName, string readableName, double colWidth)
+                    List<string> tmp = new List<string>();
+                    foreach (Header item in AllHeaders)
                     {
-                        this.ShortName = shortName;
-                        this.FullName = fullName;
-                        this.ReadableName = readableName;
-                        this.ColWidth = colWidth;
+                        if (this.choosedHeaders.Contains(item.ShortName))
+                        {
+                            tmp.Add(item.ReadableName);
+                        }
                     }
 
-                    public string ShortName { get => shortName; set => shortName = value; }
-                    public string FullName { get => fullName; set => fullName = value; }
-                    public string ReadableName { get => readableName; set => readableName = value; }
-                    public double ColWidth { get => colWidth; set => colWidth = value; }
+                    tmp.CopyTo(data);
+                    return data;
                 }
+
+                public List<string> ReadableChoosedHeadersList()
+                {
+                    List<string> tmp = new List<string>();
+                    foreach (Header item in AllHeaders)
+                    {
+                        if (this.choosedHeaders.Contains(item.ShortName))
+                        {
+                            tmp.Add(item.ReadableName);
+                        }
+                    }
+
+                    return tmp;
+                }
+
+            }
+
+            public class Header
+            {
+                private string shortName;
+                private string readableName;
+                private double colWidth;
+
+                public Header(string shortName, string readableName, double colWidth)
+                {
+                    this.ShortName = shortName;
+                    this.ReadableName = readableName;
+                    this.ColWidth = colWidth;
+                }
+
+                public string ShortName { get => shortName; set => shortName = value; }
+                public string ReadableName { get => readableName; set => readableName = value; }
+                public double ColWidth { get => colWidth; set => colWidth = value; }
             }
 
             public static void save()
@@ -84,3 +158,4 @@ namespace SecretaryST
         }
     }
 }
+

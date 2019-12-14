@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using static SecretaryST.Settings.StartProtOptions.StartProt;
+using static SecretaryST.Settings.StartProtOptions;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SecretaryST
@@ -50,24 +50,23 @@ namespace SecretaryST
                 Excel.Range group4HeadersRng = sheet.Range[headersGroup4CellName];
 
                 ReadOption(allHeadersRng, out List<object> data);
-                loadHeaders(data, out List<Header> lHeaders);
-                Settings.StartProtOptions.StartProtMain.Headers = lHeaders;
+                loadAllHeaderData(data, out List<Header> lAllHeaders);
+                Settings.StartProtOptions.AllHeaders = lAllHeaders;
 
                 ReadOption(group1HeadersRng, out data);
-                loadHeaders(data, out lHeaders);
-                Settings.StartProtOptions.StartProtGroup1.Headers = lHeaders;
+                loadHeaders(data, out List<string> lHeaders);
+                Settings.StartProtOptions.StartProtGroup1.ChoosedHeaders = lHeaders;
 
                 ReadOption(group2HeadersRng, out data);
                 loadHeaders(data, out lHeaders);
-                Settings.StartProtOptions.StartProtGroup2.Headers = lHeaders;
+                Settings.StartProtOptions.StartProtGroup2.ChoosedHeaders = lHeaders;
 
                 ReadOption(group4HeadersRng, out data);
                 loadHeaders(data, out lHeaders);
-                Settings.StartProtOptions.StartProtGroup4.Headers = lHeaders;
+                Settings.StartProtOptions.StartProtGroup4.ChoosedHeaders = lHeaders;
 
-                void loadHeaders(List<object> lData, out List<Header> dest)
+                void loadAllHeaderData(List<object> lData, out List<Header> dest)
                 {
-
                     dest = new List<Header>();
 
                     if (lData is null)
@@ -77,8 +76,23 @@ namespace SecretaryST
 
                     foreach (object[] row in lData)
                     {
-                        Header h = new Header(row[0].ToString(), row[1].ToString(), row[2].ToString(), double.Parse(row[3].ToString()));
+                        Header h = new Header(row[0].ToString(), row[1].ToString(), double.Parse(row[2].ToString()));
                         dest.Add(h);
+                    }
+                }
+
+                void loadHeaders(List<object> lData, out List<string> dest)
+                {
+                    dest = new List<string>();
+
+                    if (lData is null)
+                    {
+                        return;
+                    }
+
+                    foreach (object[] row in lData)
+                    {
+                        dest.Add(row[0].ToString());
                     }
                 }
             }
@@ -91,24 +105,9 @@ namespace SecretaryST
             Excel.Range group2HeadersRng = sheet.Range[headersGroup2CellName];
             Excel.Range group4HeadersRng = sheet.Range[headersGroup4CellName];
 
-            HeadersToList(Settings.StartProtOptions.StartProtGroup1.Headers, out List<string> sHeaders);
-            WriteOption(group1HeadersRng, sHeaders);
-
-            HeadersToList(Settings.StartProtOptions.StartProtGroup2.Headers, out sHeaders);
-            WriteOption(group2HeadersRng, sHeaders);
-
-            HeadersToList(Settings.StartProtOptions.StartProtGroup4.Headers, out sHeaders);
-            WriteOption(group4HeadersRng, sHeaders);
-
-            void HeadersToList(List<Header> headers, out List<string> dest)
-            {
-                dest = new List<string>();
-
-                foreach  (Header h in headers)
-                {
-                    dest.Add(h.ShortName);
-                }
-            }
+            WriteOption(group1HeadersRng, Settings.StartProtOptions.StartProtGroup1.ChoosedHeaders);
+            WriteOption(group2HeadersRng, Settings.StartProtOptions.StartProtGroup2.ChoosedHeaders);
+            WriteOption(group4HeadersRng, Settings.StartProtOptions.StartProtGroup4.ChoosedHeaders);
         }
 
 
@@ -122,6 +121,8 @@ namespace SecretaryST
             }
 
             double count;
+
+            if (firstCell.Value is null) { result = null; return; }
 
             if (firstCell.Value.GetType().IsArray)
             {
@@ -143,7 +144,7 @@ namespace SecretaryST
                 throw new System.InvalidOperationException("first cell of options should be positive");
             }
 
-            Excel.Range dataRange = firstCell.Offset[RowOffset: 1].Resize[RowSize: count - 1];
+            Excel.Range dataRange = firstCell.Offset[RowOffset: 1].Resize[RowSize: count];
 
             object[,] aData = dataRange.Value2;
             for (int row = 1; row < aData.GetUpperBound(0) + 1; row++)
@@ -188,13 +189,18 @@ namespace SecretaryST
 
         private static void WriteOption(Excel.Range firstCell, List<object> lData)
         {
+            //if null range
             if (firstCell is null)
             {
                 throw new System.ArgumentNullException(nameof(firstCell));
             }
 
+            //clear col
+            firstCell.Rows.ClearContents();
+
             int count = lData.Count;
 
+            //if nor options to add
             if (count <= 0)
             {
                 return;
@@ -202,12 +208,12 @@ namespace SecretaryST
 
             firstCell.Value2 = count;
 
-            Excel.Range dataRange = firstCell.Offset[RowOffset: 1].Resize[RowSize: count - 1];
+            Excel.Range dataRange = firstCell.Offset[RowOffset: 1].Resize[RowSize: count];
             object[] aData = new object[count];
 
             lData.CopyTo(aData, 0);
 
-            dataRange.Value = aData;
+            Utils.writeValue(aData, dataRange);
         }
 
         public static void WriteOption(Excel.Range firstCell, List<string> lData)

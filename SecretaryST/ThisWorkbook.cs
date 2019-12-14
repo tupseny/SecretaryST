@@ -84,7 +84,7 @@ namespace SecretaryST
         public static void StartProtocol1Generate()
         {
             DistanceGroupAmount amount = DistanceGroupAmount.One;
-            List<string> headers = Globals.Options.startProtocolHeaders1;
+            List<string> headers = Settings.StartProtOptions.StartProtGroup1.ChoosedHeaders;
             StartTimer timer = new StartTimer(Globals.Options.FirstStartTime1, Globals.Options.StartInterval1);
 
             StartProtocolGenerate(amount, timer, headers);
@@ -93,7 +93,7 @@ namespace SecretaryST
         public static void StartProtocol2Generate()
         {
             DistanceGroupAmount amount = DistanceGroupAmount.Two;
-            List<string> headers = Globals.Options.startProtocolHeaders2;
+            List<string> headers = Settings.StartProtOptions.StartProtGroup2.ChoosedHeaders;
             StartTimer timer = new StartTimer(Globals.Options.FirstStartTime2, Globals.Options.StartInterval2);
 
             StartProtocolGenerate(amount, timer, headers);
@@ -102,7 +102,7 @@ namespace SecretaryST
         public static void StartProtocol4Generate()
         {
             DistanceGroupAmount amount = DistanceGroupAmount.Four;
-            List<string> headers = Globals.Options.startProtocolHeaders4;
+            List<string> headers = Settings.StartProtOptions.StartProtGroup4.ChoosedHeaders;
             StartTimer timer = new StartTimer(Globals.Options.FirstStartTime4, Globals.Options.StartInterval4);
 
             StartProtocolGenerate(amount, timer, headers);

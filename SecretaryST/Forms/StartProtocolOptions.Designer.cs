@@ -29,88 +29,126 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabMain = new System.Windows.Forms.TabPage();
-            this.tabGroup1 = new System.Windows.Forms.TabPage();
-            this.HeadersCheckedList = new System.Windows.Forms.CheckedListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabGroup2 = new System.Windows.Forms.TabPage();
-            this.tabGroup4 = new System.Windows.Forms.TabPage();
+            this.tabHeaders = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.HeadersCheckedListGroup1 = new System.Windows.Forms.CheckedListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.HeadersCheckedListGroup2 = new System.Windows.Forms.CheckedListBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.HeadersCheckedListGroup4 = new System.Windows.Forms.CheckedListBox();
             this.butSave = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabGroup1.SuspendLayout();
+            this.tabHeaders.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabMain);
-            this.tabControl1.Controls.Add(this.tabGroup1);
-            this.tabControl1.Controls.Add(this.tabGroup2);
-            this.tabControl1.Controls.Add(this.tabGroup4);
+            this.tabControl1.Controls.Add(this.tabHeaders);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(680, 378);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabMain
+            // tabHeaders
             // 
-            this.tabMain.Location = new System.Drawing.Point(4, 22);
-            this.tabMain.Name = "tabMain";
-            this.tabMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMain.Size = new System.Drawing.Size(672, 352);
-            this.tabMain.TabIndex = 0;
-            this.tabMain.Text = "Общие";
-            this.tabMain.UseVisualStyleBackColor = true;
+            this.tabHeaders.Controls.Add(this.flowLayoutPanel1);
+            this.tabHeaders.Location = new System.Drawing.Point(4, 22);
+            this.tabHeaders.Name = "tabHeaders";
+            this.tabHeaders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHeaders.Size = new System.Drawing.Size(672, 352);
+            this.tabHeaders.TabIndex = 1;
+            this.tabHeaders.Text = "Заголовки";
+            this.tabHeaders.UseVisualStyleBackColor = true;
             // 
-            // tabGroup1
+            // flowLayoutPanel1
             // 
-            this.tabGroup1.Controls.Add(this.HeadersCheckedList);
-            this.tabGroup1.Controls.Add(this.label1);
-            this.tabGroup1.Location = new System.Drawing.Point(4, 22);
-            this.tabGroup1.Name = "tabGroup1";
-            this.tabGroup1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroup1.Size = new System.Drawing.Size(672, 352);
-            this.tabGroup1.TabIndex = 1;
-            this.tabGroup1.Text = "Личка";
-            this.tabGroup1.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(666, 346);
+            this.flowLayoutPanel1.TabIndex = 7;
             // 
-            // HeadersCheckedList
+            // groupBox1
             // 
-            this.HeadersCheckedList.FormattingEnabled = true;
-            this.HeadersCheckedList.Location = new System.Drawing.Point(19, 30);
-            this.HeadersCheckedList.Name = "HeadersCheckedList";
-            this.HeadersCheckedList.Size = new System.Drawing.Size(170, 304);
-            this.HeadersCheckedList.TabIndex = 5;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox1.Controls.Add(this.HeadersCheckedListGroup1);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.groupBox1.Location = new System.Drawing.Point(15, 8);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(15, 8, 20, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(185, 340);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Личка";
             // 
-            // label1
+            // HeadersCheckedListGroup1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Заголовки протокола";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HeadersCheckedListGroup1.CheckOnClick = true;
+            this.HeadersCheckedListGroup1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeadersCheckedListGroup1.FormattingEnabled = true;
+            this.HeadersCheckedListGroup1.Location = new System.Drawing.Point(3, 16);
+            this.HeadersCheckedListGroup1.Name = "HeadersCheckedListGroup1";
+            this.HeadersCheckedListGroup1.Size = new System.Drawing.Size(179, 321);
+            this.HeadersCheckedListGroup1.TabIndex = 5;
             // 
-            // tabGroup2
+            // groupBox2
             // 
-            this.tabGroup2.Location = new System.Drawing.Point(4, 22);
-            this.tabGroup2.Name = "tabGroup2";
-            this.tabGroup2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroup2.Size = new System.Drawing.Size(672, 352);
-            this.tabGroup2.TabIndex = 2;
-            this.tabGroup2.Text = "Связка";
-            this.tabGroup2.UseVisualStyleBackColor = true;
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox2.Controls.Add(this.HeadersCheckedListGroup2);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox2.Location = new System.Drawing.Point(240, 8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(20, 8, 20, 8);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(185, 340);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Личка";
             // 
-            // tabGroup4
+            // HeadersCheckedListGroup2
             // 
-            this.tabGroup4.Location = new System.Drawing.Point(4, 22);
-            this.tabGroup4.Name = "tabGroup4";
-            this.tabGroup4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroup4.Size = new System.Drawing.Size(672, 352);
-            this.tabGroup4.TabIndex = 3;
-            this.tabGroup4.Text = "Группа";
-            this.tabGroup4.UseVisualStyleBackColor = true;
+            this.HeadersCheckedListGroup2.CheckOnClick = true;
+            this.HeadersCheckedListGroup2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeadersCheckedListGroup2.FormattingEnabled = true;
+            this.HeadersCheckedListGroup2.Location = new System.Drawing.Point(3, 16);
+            this.HeadersCheckedListGroup2.Name = "HeadersCheckedListGroup2";
+            this.HeadersCheckedListGroup2.Size = new System.Drawing.Size(179, 321);
+            this.HeadersCheckedListGroup2.TabIndex = 5;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox3.Controls.Add(this.HeadersCheckedListGroup4);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox3.Location = new System.Drawing.Point(465, 8);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(20, 8, 0, 8);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(185, 340);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Личка";
+            // 
+            // HeadersCheckedListGroup4
+            // 
+            this.HeadersCheckedListGroup4.CheckOnClick = true;
+            this.HeadersCheckedListGroup4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeadersCheckedListGroup4.FormattingEnabled = true;
+            this.HeadersCheckedListGroup4.Location = new System.Drawing.Point(3, 16);
+            this.HeadersCheckedListGroup4.Name = "HeadersCheckedListGroup4";
+            this.HeadersCheckedListGroup4.Size = new System.Drawing.Size(179, 321);
+            this.HeadersCheckedListGroup4.TabIndex = 5;
             // 
             // butSave
             // 
@@ -132,8 +170,11 @@
             this.Text = "Настройка стартовых протоколов";
             this.TransparencyKey = System.Drawing.Color.Black;
             this.tabControl1.ResumeLayout(false);
-            this.tabGroup1.ResumeLayout(false);
-            this.tabGroup1.PerformLayout();
+            this.tabHeaders.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,12 +182,14 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabMain;
-        private System.Windows.Forms.TabPage tabGroup1;
-        private System.Windows.Forms.TabPage tabGroup2;
-        private System.Windows.Forms.TabPage tabGroup4;
-        private System.Windows.Forms.CheckedListBox HeadersCheckedList;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabHeaders;
+        private System.Windows.Forms.CheckedListBox HeadersCheckedListGroup1;
         private System.Windows.Forms.Button butSave;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckedListBox HeadersCheckedListGroup2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckedListBox HeadersCheckedListGroup4;
     }
 }
