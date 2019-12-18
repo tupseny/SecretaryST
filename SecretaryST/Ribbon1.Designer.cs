@@ -39,6 +39,7 @@
             this.group1 = this.Factory.CreateRibbonGroup();
             this.removeOtherSheets = this.Factory.CreateRibbonButton();
             this.visualEffectsToggle = this.Factory.CreateRibbonToggleButton();
+            this.butOptions = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.box1 = this.Factory.CreateRibbonBox();
             this.box3 = this.Factory.CreateRibbonBox();
@@ -51,7 +52,6 @@
             this.startProt1 = this.Factory.CreateRibbonButton();
             this.startProt2 = this.Factory.CreateRibbonButton();
             this.startProt4 = this.Factory.CreateRibbonButton();
-            this.butOptions = this.Factory.CreateRibbonButton();
             this.secretary_tab.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -92,6 +92,13 @@
             resources.ApplyResources(this.visualEffectsToggle, "visualEffectsToggle");
             this.visualEffectsToggle.Name = "visualEffectsToggle";
             this.visualEffectsToggle.ShowImage = true;
+            // 
+            // butOptions
+            // 
+            this.butOptions.Image = global::SecretaryST.Properties.Resources.options;
+            resources.ApplyResources(this.butOptions, "butOptions");
+            this.butOptions.Name = "butOptions";
+            this.butOptions.ShowImage = true;
             // 
             // group2
             // 
@@ -167,13 +174,6 @@
             resources.ApplyResources(this.startProt4, "startProt4");
             this.startProt4.Name = "startProt4";
             this.startProt4.ShowImage = true;
-            // 
-            // butOptions
-            // 
-            this.butOptions.Image = global::SecretaryST.Properties.Resources.options;
-            resources.ApplyResources(this.butOptions, "butOptions");
-            this.butOptions.Name = "butOptions";
-            this.butOptions.ShowImage = true;
             // 
             // SecretaryRibbon
             // 

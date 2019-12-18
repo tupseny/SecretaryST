@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SecretaryST.Models
 {
-    class DatabaseEntry
+    class DistanceResult
     {
         private Person person;
-        private int chipNum;
+        private DistanceTime timeData;
+        private DistanceStages stages;
     }
 }

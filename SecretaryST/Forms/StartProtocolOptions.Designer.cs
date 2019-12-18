@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabHeaders = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.HeadersCheckedListGroup4 = new System.Windows.Forms.CheckedListBox();
             this.butSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabHeaders.SuspendLayout();
@@ -69,6 +69,13 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Главное";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(267, 340);
+            this.panel1.TabIndex = 0;
             // 
             // tabHeaders
             // 
@@ -173,13 +180,6 @@
             this.butSave.TabIndex = 1;
             this.butSave.Text = "Сохранить";
             this.butSave.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 340);
-            this.panel1.TabIndex = 0;
             // 
             // StartProtocolOptions
             // 
