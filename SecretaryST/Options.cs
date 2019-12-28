@@ -17,7 +17,7 @@ namespace SecretaryST
         {
             sheet = this.Base;
 
-            loadOptions();
+            LoadOptions();
         }
 
         private void Лист2_Shutdown(object sender, System.EventArgs e)
@@ -38,7 +38,7 @@ namespace SecretaryST
 
         #endregion
 
-        private static void loadOptions()
+        private static void LoadOptions()
         {
             loadStartProtocolHeaders();
 

@@ -156,25 +156,6 @@ namespace SecretaryST {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Tools.Office.ProgrammingModel.dll", "16.0.0.0")]
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         private void InitializeComponents() {
-            // 
-            // startProtHeaders1
-            // 
-            this.startProtHeaders1.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
-            // 
-            // startProtHeaders2
-            // 
-            this.startProtHeaders2.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
-            // 
-            // startProtHeaders4
-            // 
-            this.startProtHeaders4.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
-            // 
-            // startProtAllHeaders
-            // 
-            this.startProtAllHeaders.DefaultDataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.Never;
-            // 
-            // Лист2
-            // 
         }
         
         /// 

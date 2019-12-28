@@ -60,7 +60,7 @@ namespace SecretaryST
 #pragma warning restore CA1034 // Вложенные типы не должны быть видимыми
         {
             public const string Application = "Заявка";
-            public const string Options = "Настройка";
+            public const string Options = "OPTIONS";
             public const string Manager = "Управление";
             public const string Base = "База";
             public const string TechApplication = "Тех.заявка";

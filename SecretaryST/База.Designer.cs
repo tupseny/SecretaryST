@@ -22,7 +22,9 @@ namespace SecretaryST {
         
         /// 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never
+            
+            )]
         public База(global::Microsoft.Office.Tools.Excel.Factory factory, global::System.IServiceProvider serviceProvider) : 
                 base(factory, serviceProvider, "Лист3", "Лист3") {
         }
