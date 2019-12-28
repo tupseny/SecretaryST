@@ -1,5 +1,6 @@
 ﻿using SecretaryST.Enums;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SecretaryST.Models
 {
@@ -220,5 +221,16 @@ namespace SecretaryST.Models
                 return string.Join(sep, aValues);
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DistanceGroup group &&
+                   _Type == group._Type &&
+                   _Amount == group._Amount &&
+                   _Members.SequenceEqual(group._Members) &&
+                   _MaxMembers == group._MaxMembers;
+    }
+
+
     }
 }

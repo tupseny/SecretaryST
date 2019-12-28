@@ -93,6 +93,9 @@ namespace SecretaryST
             {
                 ConvertDataToModels();
 
+                //if entity imported
+                База.IncrementEntriesCount(nPersons);
+
                 //methods finished successfuly
                 //AlertBoxes.AlertMsg("ГОТОВО!");
             }
@@ -117,10 +120,12 @@ namespace SecretaryST
             catch (GroupNotFullException e)
             //If some group is not full
             {
-                AlertBoxes.GroupNotFullalert(e.StructGroupIndex.GroupIndex, e.StructGroupIndex.Amnt);
+                AlertBoxes.GroupNotFullAlert(e.StructGroupIndex.GroupIndex, e.StructGroupIndex.Amnt);
             }
-
-            База.IncrementEntriesCount(nPersons);
+            catch (GroupAlreadyExistsException e)
+            {
+                AlertBoxes.GroupAlreadyExistsAlert(e.Struc, e.Group);
+            }
 
             InWork(false);
         }

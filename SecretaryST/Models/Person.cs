@@ -33,9 +33,20 @@ namespace SecretaryST.Models
         internal Rangs Rang { get => _Rang; set => _Rang = value; }
         internal Sex Sex { get => _Sex; set => _Sex = value; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Person person &&
+                   _Name == person._Name &&
+                   _Birth == person._Birth &&
+                   _Rang == person._Rang &&
+                   _Sex == person._Sex;
+        }
+
         internal string BirthYear()
         {
             return Birth.Year.ToString();
         }
+
+
     }
 }

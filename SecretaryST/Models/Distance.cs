@@ -2,6 +2,7 @@
 using SecretaryST.Structs;
 using System.Collections.Generic;
 using System;
+using SecretaryST.Exceptions;
 
 namespace SecretaryST.Models
 {
@@ -23,6 +24,11 @@ namespace SecretaryST.Models
             if (groupIndexAmount.GroupIndex == -1)
             {
                 groupIndexAmount.GroupIndex = this.Groups.Count + 1;
+            }
+
+            if (PersonExists(groupIndexAmount, grp))
+            {
+                throw new GroupAlreadyExistsException(groupIndexAmount, grp);
             }
 
             this.Groups.Add(key: groupIndexAmount, value: grp);
@@ -115,6 +121,22 @@ namespace SecretaryST.Models
             }
 
             return lItems;
+        }
+
+        private bool PersonExists(GroupIndexAmountStruct groupIndexAmount, DistanceGroup grp)
+        {
+            foreach (KeyValuePair<GroupIndexAmountStruct, DistanceGroup> kvGroup in this.Groups)
+            {
+                if (kvGroup.Key.Amnt == groupIndexAmount.Amnt)
+                {
+                    if (kvGroup.Value.Equals(grp))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

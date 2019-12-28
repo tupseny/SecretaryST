@@ -1,4 +1,6 @@
 ﻿using SecretaryST.Enums;
+using SecretaryST.Models;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SecretaryST
@@ -13,7 +15,7 @@ namespace SecretaryST
             return YesNoMsg(msg, t);
         }
 
-        public static void GroupNotFullalert(int grIndex, DistanceGroupAmount grAmount)
+        public static void GroupNotFullAlert(int grIndex, DistanceGroupAmount grAmount)
         {
             string title = "Неполная группа";
             string msg = EnumCasters.GroupAmountStringRepresent(grAmount) + " под номером " + grIndex + " не полная!";
@@ -31,6 +33,19 @@ namespace SecretaryST
         public static void GroupFullAlert(Structs.GroupIndexAmountStruct data)
         {
             AlertMsg(title: "Ошибка", msg: EnumCasters.GroupAmountStringRepresent(data.Amnt) + " номер - '" + data.GroupIndex + "' уже полная");
+        }
+
+        public static void GroupAlreadyExistsAlert(Structs.GroupIndexAmountStruct data, DistanceGroup gr)
+        {
+            string msg = EnumCasters.GroupAmountStringRepresent(data.Amnt) + " в составе:\n";
+
+            List<string> names = new List<string>();
+            gr.Members.ForEach(p => names.Add(p.Name));
+
+            msg += string.Join("\n", names.ToArray());
+            msg += "\nуже существует!";
+            
+            AlertMsg(title: "Ошибка", msg: msg);
         }
 
         public static void AlertMsg(string msg, string title = "Ошибка")
